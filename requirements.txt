@@ -4,6 +4,7 @@ Django==2.0
 django-choices==1.6.0
 djangorestframework==3.7.3
 future==0.16.0
+gunicorn==19.7.1
 pluggy==0.6.0
 py==1.5.2
 pytest==3.3.1
