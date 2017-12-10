@@ -128,3 +128,37 @@ class TestUsersViews:
         })
 
         assert response.status_code == 400
+
+    def test_teacher_admin_password_generation(self, client: Client):
+        """
+        Given teacher,
+        When generate admin password,
+        Then response contains generated password,
+        And teacher has generated password.
+        """
+        teacher = User.objects.create(username='ychitel', level=UserLevel.teacher)
+
+        response = client.post('/api/users/generate_admin_password', {
+            'username': teacher.username
+        })
+
+        assert response.data == {
+            'password': response.data['password']
+        }
+        assert User.objects.get(pk=teacher.pk).password == response.data['password']
+
+    def test_teacher_admin_password_generation_if_user_is_student(self, client: Client):
+        """
+        Given student,
+        When generate admin password,
+        Then response status is 403,
+        And student has no generated password.
+        """
+        student = User.objects.create(username='stydentiwka', level=UserLevel.student)
+
+        response = client.post('/api/users/generate_admin_password', {
+            'username': student.username
+        })
+
+        assert response.status_code == 403
+        assert not User.objects.get(pk=student.pk).password

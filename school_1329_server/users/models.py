@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from djchoices import DjangoChoices, ChoiceItem
 
+from school_1329_server.users.utils import generate_password
+
 
 class UserLevel(DjangoChoices):
     admin = ChoiceItem(0)
@@ -17,6 +19,12 @@ class User(AbstractUser):
 
     # null for admins
     level = models.IntegerField(choices=UserLevel.choices, default=0)
+
+    def generate_password(self):
+        password = generate_password()
+        self.password = password
+        self.save()
+        return password
 
 
 class TemporaryPassword(models.Model):
