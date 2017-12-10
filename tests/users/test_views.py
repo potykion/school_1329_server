@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 
 import pytest
 from django.test import Client
+from django.utils import timezone
+from pytz import UTC
 
 from school_1329_server.users.models import UserLevel, TemporaryPassword, User
 
@@ -12,7 +14,7 @@ class TestUsersViews:
     @pytest.fixture()
     def password(self):
         return TemporaryPassword.objects.create(
-            expiration_date=datetime.now() + timedelta(days=1),
+            expiration_date=timezone.now() + timedelta(days=1),
             level=1,
             value='opoppaop'
         )
@@ -20,7 +22,7 @@ class TestUsersViews:
     @pytest.fixture()
     def expired_password(self):
         return TemporaryPassword.objects.create(
-            expiration_date=datetime.now() - timedelta(days=1),
+            expiration_date=timezone.now() - timedelta(days=1),
             level=1,
             value='opoppaop'
         )
@@ -33,7 +35,7 @@ class TestUsersViews:
         Then response contains generated password data,
         And new temporary password will be generated.
         """
-        expiration_date = datetime(2017, 12, 18, 21, 00)
+        expiration_date = datetime(2017, 12, 18, 21, 00, tzinfo=UTC)
         password_level = UserLevel.student
 
         response = client.post('/api/users/generate_password', {
@@ -42,7 +44,7 @@ class TestUsersViews:
         })
 
         assert response.data == {
-            'expiration_date': expiration_date.isoformat() + 'Z',
+            'expiration_date': expiration_date.isoformat()[:-6] + 'Z',
             'level': password_level,
             # password value is random
             'value': response.data['value']
