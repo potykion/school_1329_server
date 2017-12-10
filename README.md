@@ -9,4 +9,4 @@ Python version: 3.5+
 Installation:
 - ```pip install requirements.txt```
 - ```python manage.py makemigrations```
-- On first run: ``````python manage.py makemigrations users```
+- On first run: ```python manage.py makemigrations users```
