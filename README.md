@@ -2,6 +2,9 @@
 
 Server for School 1329 App.
 
+API: https://github.com/potykion/school_1329_server/wiki/API
+
+
 # Local development
 
 Python version: 3.5+
