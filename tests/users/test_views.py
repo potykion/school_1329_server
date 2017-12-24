@@ -35,7 +35,7 @@ class TestUsersViews:
         Then response contains generated password data,
         And new temporary password will be generated.
         """
-        expiration_date = datetime(2017, 12, 18, 21, 00, tzinfo=UTC)
+        expiration_date = timezone.now() + timedelta(days=2)
         password_level = UserLevel.student
 
         response = client.post('/api/users/generate_password', {

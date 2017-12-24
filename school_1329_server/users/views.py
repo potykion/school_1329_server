@@ -3,10 +3,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from school_1329_server.users.auth import TeacherAuthorization
-from school_1329_server.users.models import User
 from school_1329_server.users.serializers import TemporaryPasswordSerializer, ValidateTemporaryPasswordSerializer, \
     UserSerializer
-from school_1329_server.users.utils import generate_password
 
 
 class CreateTemporaryPasswordAPIView(CreateAPIView):

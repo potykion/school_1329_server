@@ -1,0 +1,45 @@
+{% extends "common/base.html" %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <div class="row">
+            <div class="col-md-3"></div>
+
+            <div class="col-md-6">
+                <div class="alert alert-warning" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">×</button>
+                    <h4 class="alert-heading">Ошибка!
+                        <br>
+                    </h4>
+                    <p class="mb-0">Неверный логин или пароль.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3"></div>
+
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card text-white p-5 bg-primary">
+                <div class="card-body">
+                    <h1 class="mb-4">Вход
+                        <br></h1>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group"><label>Логин</label>
+                            <input name="username" class="form-control" placeholder="Введите логин"></div>
+                        <div class="form-group"><label>Пароль</label>
+                            <input name="password" type="password" class="form-control" placeholder="Введите пароль">
+                        </div>
+                        <button type="submit" class="btn btn-secondary">Войти
+                            <br></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
