@@ -7,9 +7,8 @@ Server for School 1329 App. API docs can be found [here](https://github.com/poty
 # Local development
 
 ## Setup:
-- Soft: Python version: 3.5+; virtualenv
+- Python 3.6+
 - Dependencies: ```pip install requirements.txt```
-- Local env settings: ```set DJANGO_SETTINGS_MODULE=config.settings.local``` (Linux/Mac: ```export DJANGO_SETTINGS_MODULE=config.settings.local```)
 - Apply migrations: ```python manage.py migrate```
 
 ## Commands:
