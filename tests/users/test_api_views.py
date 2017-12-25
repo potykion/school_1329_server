@@ -16,7 +16,7 @@ class TestUsersViews:
         return TemporaryPassword.objects.create(
             expiration_date=timezone.now() + timedelta(days=1),
             level=1,
-            value='opoppaop'
+            password_value='opoppaop'
         )
 
     @pytest.fixture()
@@ -24,7 +24,7 @@ class TestUsersViews:
         return TemporaryPassword.objects.create(
             expiration_date=timezone.now() - timedelta(days=1),
             level=1,
-            value='opoppaop'
+            password_value='opoppaop'
         )
 
     def test_password_generation(self, client: Client):
@@ -47,7 +47,7 @@ class TestUsersViews:
             'expiration_date': expiration_date.isoformat()[:-6] + 'Z',
             'level': password_level,
             # password value is random
-            'value': response.data['value']
+            'password_value': response.data['password_value']
         }
         assert TemporaryPassword.objects.filter(expiration_date=expiration_date, level=password_level).exists()
 
@@ -58,7 +58,7 @@ class TestUsersViews:
         Then response contains info that password is valid.
         """
         response = client.post('/api/users/validate_password', {
-            'value': password.value,
+            'password_value': password.password_value,
             'level': password.level
         })
 
@@ -72,7 +72,7 @@ class TestUsersViews:
         Then response contains info that password is invalid.
         """
         response = client.post('/api/users/validate_password', {
-            'value': 'aaaaaaaaaa',
+            'password_value': 'aaaaaaaaaa',
             'level': password.level
         })
 
@@ -86,7 +86,7 @@ class TestUsersViews:
         Then response contains info that password is invalid.
         """
         response = client.post('/api/users/validate_password', {
-            'value': expired_password.value,
+            'password_value': expired_password.password_value,
             'level': expired_password.level
         })
 
@@ -103,7 +103,7 @@ class TestUsersViews:
         username = 'pocan'
 
         response = client.post('/api/users/register', {
-            'value': password.value,
+            'password_value': password.password_value,
             'level': password.level,
             'username': username
         })
@@ -124,7 +124,7 @@ class TestUsersViews:
         username = 'pocan'
 
         response = client.post('/api/users/register', {
-            'value': expired_password.value,
+            'password_value': expired_password.password_value,
             'level': expired_password.level,
             'username': username
         })
@@ -145,9 +145,9 @@ class TestUsersViews:
         })
 
         assert response.data == {
-            'password': response.data['password']
+            'password_value': response.data['password_value']
         }
-        assert User.objects.get(pk=teacher.pk).password == response.data['password']
+        assert User.objects.get(pk=teacher.pk).password == response.data['password_value']
 
     def test_teacher_admin_password_generation_if_user_is_student(self, client: Client):
         """

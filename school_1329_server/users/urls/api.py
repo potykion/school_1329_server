@@ -1,6 +1,6 @@
 from django.urls import path
 
-from school_1329_server.users import views
+from school_1329_server.users.views import api as views
 
 urlpatterns = [
     path('generate_password', views.CreateTemporaryPasswordAPIView.as_view()),

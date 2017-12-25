@@ -20,11 +20,12 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
 
     path('', include([
-        path('', include('school_1329_server.common.urls'))
+        path('', include('school_1329_server.common.urls')),
+        path('users/', include('school_1329_server.users.urls.admin'))
 
     ])),
 
     path('api/', include([
-        path('users/', include('school_1329_server.users.urls'))
+        path('users/', include('school_1329_server.users.urls.api'))
     ]))
 ]

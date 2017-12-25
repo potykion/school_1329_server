@@ -9,9 +9,9 @@ from school_1329_server.users.utils import generate_password
 class TemporaryPasswordSerializer(serializers.ModelSerializer):
     class Meta:
         model = TemporaryPassword
-        fields = ('expiration_date', 'value', 'level')
+        fields = ('expiration_date', 'password_value', 'level')
         extra_kwargs = {
-            'value': {'read_only': True}
+            'password_value': {'read_only': True}
         }
 
     def validate_expiration_date(self, value):
@@ -21,13 +21,13 @@ class TemporaryPasswordSerializer(serializers.ModelSerializer):
             raise ValidationError('Expiration date should be greater than {}.'.format(timezone.now()))
 
     def validate(self, data):
-        return {**data, 'value': generate_password()}
+        return {**data, 'password_value': generate_password()}
 
 
 class ValidateTemporaryPasswordSerializer(serializers.ModelSerializer):
     class Meta:
         model = TemporaryPassword
-        fields = ('value', 'level')
+        fields = ('password_value', 'level')
 
     def validate(self, data):
         """

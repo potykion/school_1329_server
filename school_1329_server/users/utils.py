@@ -1,5 +1,8 @@
 import string
 import random
+from datetime import timedelta
+
+from django.utils import timezone
 
 
 def generate_password(length=8):
@@ -10,3 +13,6 @@ def generate_password(length=8):
     """
     alphabet = string.ascii_letters + string.digits
     return ''.join(random.choice(alphabet) for _ in range(length))
+
+def generate_expiration_date(days=7):
+    return timezone.now() + timedelta(days=days)

@@ -1,3 +1,4 @@
+
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -5,6 +6,7 @@ from rest_framework.views import APIView
 from school_1329_server.users.auth import TeacherAuthorization
 from school_1329_server.users.serializers import TemporaryPasswordSerializer, ValidateTemporaryPasswordSerializer, \
     UserSerializer
+
 
 
 class CreateTemporaryPasswordAPIView(CreateAPIView):
@@ -46,4 +48,8 @@ class CreateTeacherAdminPasswordAPIView(APIView):
     authentication_classes = (TeacherAuthorization,)
 
     def post(self, request, *args, **kwargs):
-        return Response({'password': request.user.generate_password()}, 200)
+        return Response({'password_value': request.user.generate_password()}, 200)
+
+
+
+

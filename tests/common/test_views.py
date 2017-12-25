@@ -4,18 +4,10 @@ from django.test import Client
 from django.urls import reverse
 
 from school_1329_server.users.models import User
+from tests.users.setup import UsersFixtures
 
 
-@pytest.fixture()
-def user():
-    return User.objects.create_user(
-        username='potykion',
-        password='verysecretpassword'
-    )
-
-
-@pytest.mark.django_db
-class TestCommonViews:
+class TestCommonViews(UsersFixtures):
     def test_index_view(self, client: Client):
         """
         Given index view url,
