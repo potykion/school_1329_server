@@ -34,3 +34,4 @@ class TemporaryPassword(models.Model):
     level = models.IntegerField(choices=UserLevel.choices, default=UserLevel.teacher)
     expiration_date = models.DateTimeField(default=generate_expiration_date())
     password_value = models.CharField(max_length=32, default=generate_password())
+    date_created = models.DateTimeField(auto_now_add=True)

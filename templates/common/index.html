@@ -3,9 +3,15 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <p class="">Здравствуйте, если вы не знаете зачем нужна эта страница, то
-                <a href="https://in-gala.com/nax.html">покиньте ее</a>, иначе
-                <a href="{% url 'login' %}">попробуйте войти</a>.</p>
+
+            {% if user.is_authenticated %}
+                <p>Здравствуйте, {{ user.username }}.</p>
+            {% else %}
+                <p>Здравствуйте, если вы не знаете зачем нужна эта страница, то
+                    <a href="https://in-gala.com/nax.html">покиньте ее</a>, иначе
+                    <a href="{% url 'login' %}">попробуйте войти</a>.</p>
+
+            {% endif %}
         </div>
     </div>
 {% endblock %}

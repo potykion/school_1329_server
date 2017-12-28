@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.test import Client
 from django.urls import reverse
 
+from config.settings.common import LOGIN_REDIRECT_URL
 from school_1329_server.users.models import User
 from tests.users.setup import UsersFixtures
 
@@ -49,7 +50,7 @@ class TestCommonViews(UsersFixtures):
             'password': "verysecretpassword"
         })
 
-        assert response.url == reverse('admin')
+        assert response.url == LOGIN_REDIRECT_URL
         assert '_auth_user_id' in client.session
 
     def test_admin_view_without_login(self, client: Client, user: User):

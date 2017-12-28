@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'django_extensions',
 
     'school_1329_server.users',
     'school_1329_server.common',
@@ -118,4 +119,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = reverse_lazy('login')
-LOGIN_REDIRECT_URL = reverse_lazy('admin')
+LOGIN_REDIRECT_URL = reverse_lazy('password_list')
+
+SHELL_PLUS = "bpython"
