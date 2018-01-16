@@ -21,13 +21,13 @@
 
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Пароли
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{% url 'generate_password' %}">Сгенерировать пароль</a>
-                        <a class="dropdown-item" href="{% url 'password_list' %}">Сгенерированные пароли</a>
+                        <a class="dropdown-item" href="{% url 'create_code' %}">Сгенерировать пароль</a>
+                        <a class="dropdown-item" href="{% url 'list_codes' %}">Сгенерированные пароли</a>
 
                     </div>
                 </li>
@@ -61,6 +61,9 @@
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
 
+{% block js %}
+
+{% endblock %}
 </body>
 
 </html>

@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from djchoices import DjangoChoices, ChoiceItem
 
-from school_1329_server.users.utils import generate_password, generate_expiration_date
+from school_1329_server.users.utils import generate_registration_code, generate_expiration_date
 
 
 class UserLevel(DjangoChoices):
@@ -21,17 +21,17 @@ class User(AbstractUser):
     level = models.IntegerField(choices=UserLevel.choices, default=0)
 
     def generate_password(self):
-        password = generate_password()
+        password = generate_registration_code()
         self.password = password
         self.save()
         return password
 
 
-class TemporaryPassword(models.Model):
+class RegistrationCode(models.Model):
     """
     Represents temporary password used to authorization in app.
     """
     level = models.IntegerField(choices=UserLevel.choices, default=UserLevel.teacher)
     expiration_date = models.DateTimeField(default=generate_expiration_date())
-    password_value = models.CharField(max_length=32, default=generate_password())
+    code = models.CharField(max_length=32, default=generate_registration_code())
     date_created = models.DateTimeField(auto_now_add=True)

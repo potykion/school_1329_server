@@ -1,13 +1,13 @@
 from django import forms
 from django.utils import timezone
 
-from school_1329_server.users.models import TemporaryPassword
+from school_1329_server.users.models import RegistrationCode
 
 
-class GeneratePasswordForm(forms.ModelForm):
+class RegistrationCodeForm(forms.ModelForm):
     class Meta:
-        model = TemporaryPassword
-        fields = ('expiration_date', 'password_value')
+        model = RegistrationCode
+        fields = ('expiration_date', "code")
 
     def clean_expiration_date(self):
         """

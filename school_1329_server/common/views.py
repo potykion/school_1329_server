@@ -15,7 +15,8 @@ def index_view(request: HttpRequest) -> HttpResponse:
 
 class AdminLoginView(LoginView):
     """
-    On GET renders login form, on POST redirects to success url or shows error message.
+    On GET renders login form,
+    on POST redirects to success url or shows error message.
     """
     template_name = "common/login.html"
 

@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 from school_1329_server.common.utils import response_content_to_str
-from school_1329_server.users.models import TemporaryPassword
+from school_1329_server.users.models import RegistrationCode
 from tests.users.setup import UsersFixtures
 
 
@@ -20,7 +20,7 @@ class TestUsersAdminViews(UsersFixtures):
         And go to given url
         Then response contains password generation form.
         """
-        url = reverse('generate_password')
+        url = reverse('create_code')
 
         client.post(reverse('login'), {
             'username': user.username,
@@ -31,21 +31,21 @@ class TestUsersAdminViews(UsersFixtures):
         rendered = response.content.decode('utf-8')
         assert 'form' in rendered
         assert 'expiration_date' in rendered
-        assert 'password_value' in rendered
+        assert 'code' in rendered
 
     def test_generate_password_view_POST(self, client: Client, user):
         """
         Given generate password url,
         And user,
-        And password,
+        And registration code,
         And date
         When send POST to given url with password and date,
         Then password is created,
         And response redirects to password list.
         """
-        url = reverse('generate_password')
+        url = reverse('create_code')
 
-        password = 'verysecretpassword'
+        code = 'verysecretpassword'
         date = timezone.now() + timedelta(days=2)
 
         client.post(reverse('login'), {
@@ -53,26 +53,29 @@ class TestUsersAdminViews(UsersFixtures):
             'password': "verysecretpassword"
         })
         response: HttpResponseRedirect = client.post(url, {
-            'password_value': password,
+            'code': code,
             'expiration_date': date.date()
         })
 
-        assert TemporaryPassword.objects.filter(password_value=password, expiration_date__date=date).exists()
-        assert response.url == reverse('password_list')
+        assert RegistrationCode.objects.filter(
+            code=code,
+            expiration_date__date=date
+        ).exists()
+        assert response.url == reverse('list_codes')
 
     def test_generate_password_with_expired_expiration_date(self, client: Client, user):
         """
         Given generate password url,
         And user,
-        And password,
+        And registration code,
         And expired date
         When send POST to given url with password and date,
         Then response contains date error,
         And no passwords were created.
         """
-        url = reverse('generate_password')
+        url = reverse('create_code')
 
-        password = 'verysecretpassword1'
+        code = 'verysecretpassword1'
         date = timezone.now() - timedelta(days=2)
 
         client.post(reverse('login'), {
@@ -80,9 +83,11 @@ class TestUsersAdminViews(UsersFixtures):
             'password': "verysecretpassword"
         })
         response: HttpResponseRedirect = client.post(url, {
-            'password_value': password,
+            'code': code,
             'expiration_date': date.date()
         })
 
         assert 'Дата или пароль указаны неверно' in response_content_to_str(response)
-        assert not TemporaryPassword.objects.filter(password_value=password).exists()
+        assert not RegistrationCode.objects.filter(
+            code=code
+        ).exists()

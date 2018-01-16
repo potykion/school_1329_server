@@ -2,16 +2,16 @@ from django.utils import timezone
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from school_1329_server.users.models import TemporaryPassword, User, UserLevel
-from school_1329_server.users.utils import generate_password
+from school_1329_server.users.models import RegistrationCode, User, UserLevel
+from school_1329_server.users.utils import generate_registration_code
 
 
-class TemporaryPasswordSerializer(serializers.ModelSerializer):
+class RegistrationCodeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TemporaryPassword
-        fields = ('expiration_date', 'password_value', 'level')
+        model = RegistrationCode
+        fields = ('expiration_date', 'code', 'level')
         extra_kwargs = {
-            'password_value': {'read_only': True}
+            'code': {'read_only': True}
         }
 
     def validate_expiration_date(self, value):
@@ -21,13 +21,13 @@ class TemporaryPasswordSerializer(serializers.ModelSerializer):
             raise ValidationError('Expiration date should be greater than {}.'.format(timezone.now()))
 
     def validate(self, data):
-        return {**data, 'password_value': generate_password()}
+        return {**data, 'code': generate_registration_code()}
 
 
-class ValidateTemporaryPasswordSerializer(serializers.ModelSerializer):
+class ValidateRegistrationCodeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TemporaryPassword
-        fields = ('password_value', 'level')
+        model = RegistrationCode
+        fields = ('code', 'level')
 
     def validate(self, data):
         """
@@ -36,9 +36,9 @@ class ValidateTemporaryPasswordSerializer(serializers.ModelSerializer):
         :return: Validation result.
         """
         try:
-            password = TemporaryPassword.objects.filter(**data).get()
-        except TemporaryPassword.DoesNotExist:
-            raise ValidationError({'password': 'No such password.'})
+            password = RegistrationCode.objects.filter(**data).get()
+        except RegistrationCode.DoesNotExist:
+            raise ValidationError({'code': 'No such password.'})
         else:
             if password.expiration_date > timezone.now():
                 return {'valid': True}
