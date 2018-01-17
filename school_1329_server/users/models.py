@@ -20,12 +20,6 @@ class User(AbstractUser):
     # null for admins
     level = models.IntegerField(choices=UserLevel.choices, default=0)
 
-    def generate_password(self):
-        password = generate_registration_code()
-        self.password = password
-        self.save()
-        return password
-
 
 class RegistrationCode(models.Model):
     """

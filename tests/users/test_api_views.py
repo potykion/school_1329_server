@@ -19,6 +19,14 @@ class TestUsersViews:
             code='opoppaop'
         )
 
+    @pytest.fixture()
+    def expired_registration_code(self):
+        return RegistrationCode.objects.create(
+            expiration_date=timezone.now() - timedelta(days=1),
+            level=1,
+            code='opoppaop'
+        )
+
     def test_password_generation(self, client: Client):
         """
         Given expiration date,
@@ -42,14 +50,6 @@ class TestUsersViews:
             expiration_date=expiration_date,
             level=level
         ).exists()
-
-    @pytest.fixture()
-    def expired_registration_code(self):
-        return RegistrationCode.objects.create(
-            expiration_date=timezone.now() - timedelta(days=1),
-            level=1,
-            code='opoppaop'
-        )
 
     def test_password_validation(self, client: Client, registration_code):
         """
@@ -105,13 +105,11 @@ class TestUsersViews:
         response = client.post('/api/users/register', {
             'code': registration_code.code,
             'level': registration_code.level,
-            'username': username
+            'username': username,
+            'password': 'sam'
         })
 
-        assert response.data == {
-            'username': username,
-            'level': registration_code.level
-        }
+        assert 'token' in response.data
         assert User.objects.filter(username=username, level=registration_code.level).exists()
 
     def test_user_creation_with_expired_password(self, client: Client, expired_registration_code):
@@ -125,6 +123,7 @@ class TestUsersViews:
 
         response = client.post('/api/users/register', {
             'code': expired_registration_code.code,
+            'password': 'sam',
             'level': expired_registration_code.level,
             'username': username
         })

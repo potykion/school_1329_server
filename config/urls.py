@@ -15,6 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import SimpleRouter
+
+from school_1329_server.users.views.api import UsersViewSet
+
+router = SimpleRouter(trailing_slash=False)
+router.register('users', UsersViewSet, 'users')
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -25,7 +31,5 @@ urlpatterns = [
 
     ])),
 
-    path('api/', include([
-        path('users/', include('school_1329_server.users.urls.api'))
-    ]))
+    path('api/', include(router.urls))
 ]

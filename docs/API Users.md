@@ -64,32 +64,31 @@ curl -X POST https://school-1329-server.appspot.com/api/users/check_code -F code
 
 ## /api/users/register
 
-Validate password value and level, create user with username on success.
+Validate registration code and level, create user with username and password.
 
 ### Request fields
 
 Name | Description
 --- | ---
-**password_value** | password value
 **level** | user level (1 - student, 2 - teacher)
+**code** | registration code value
 **username** | user name
+**password** | user password
 
 ### Response fields 
 
 Name | Description
 --- | ---
-**username** | user name
-**level** | user level (1 - student, 2 - teacher) 
+**token** | token used in any user related request
 
 ### Example request
 ```
-curl -X POST https://school-1329-server.appspot.com/api/users/register -F password_value=HGy2LdYN -F level=1 -F username=pocan
+curl -X POST https://school-1329-server.appspot.com/api/users/register -F level=1 -F code=HGy2LdYN -F username=poty -F password=sam
 ```
 
 ### Example response
 ```
 {
-    "username": "pocan",
-    "level": 1
+    "token": "b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97"
 }
 ```
