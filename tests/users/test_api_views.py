@@ -36,8 +36,6 @@ class TestUsersViews:
         })
 
         assert response.data == {
-            'expiration_date': expiration_date.isoformat()[:-6] + 'Z',
-            'level': level,
             'code': response.data['code']
         }
         assert RegistrationCode.objects.filter(

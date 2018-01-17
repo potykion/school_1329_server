@@ -11,6 +11,10 @@ class CreateRegistrationCodeAPIView(CreateAPIView):
     """
     serializer_class = serializers.RegistrationCodeSerializer
 
+    def post(self, request, *args, **kwargs):
+        response = super(CreateRegistrationCodeAPIView, self).post(request, *args, **kwargs)
+        return Response({'code': response.data['code']}, status=200)
+
 
 class CheckRegistrationCodeAPIView(APIView):
     """

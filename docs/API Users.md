@@ -12,16 +12,14 @@ Create registration code with given date and level.
 
 Name | Description
 --- | ---
-**expiration_date** | registration code expiration date (in UTC)
-**level** | registration code level (1 - student, 2 - teacher)
+**expiration_date** | expiration date in UTC, should be greater than current date
+**level** | code level (1 - student, 2 - teacher)
 
 ### Response fields
 
 Name | Description
 --- | ---
-**expiration_date** | registration code expiration date (in UTC)
 **code** | registration code value generated randomly
-**level** | registration  level (1 - student, 2 - teacher)
 
 ### Example request
 
@@ -32,9 +30,7 @@ curl -X POST https://school-1329-server.appspot.com/api/users/create_code -F exp
 ### Example response 
 ```
 {
-    "expiration_date": "2017-12-18T12:00:00Z",
-    "code": "HGy2LdYN",
-    "level": 1
+    "code": "HGy2LdYN"
 }
 ```
 ## /api/users/check_code
@@ -45,7 +41,7 @@ Check registration code by given value and level.
 
 Name | Description
 --- | ---
-**level** | registration code level (1 - student, 2 - teacher)
+**level** | code level (1 - student, 2 - teacher)
 **code** | registration code value
 
 ### Response fields
