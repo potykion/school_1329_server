@@ -170,3 +170,104 @@ curl -X POST \
     "success": true
 }
 ```
+
+## POST /api/groups/{id}/remove_user
+
+Remove token-user to group with {id}.
+
+### Request headers
+
+Name | Description | Example
+--- | --- | ---
+**Authorization** | token received on register or login | Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97
+
+### Response fields
+
+Name | Description
+--- | ---
+**success** | true if user is successfully added to group
+
+### Example request
+
+```
+curl -X POST \
+  https://school-1329-server.appspot.com/api/groups/1/remove_user \
+  -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
+```
+
+### Example response
+```
+{
+    "success": true
+}
+```
+
+## GET /api/groups/{id}/users
+
+List users from group with {id}.
+
+### Request headers
+
+Name | Description | Example
+--- | --- | ---
+**Authorization** | token received on register or login | Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97
+
+### Response fields
+
+Name | Description
+--- | ---
+**username** | user name
+**level** | user level (1 - student, 2 - teacher)
+
+### Example request
+
+```
+curl -X GET \
+  https://school-1329-server.appspot.com/api/groups/1/users \
+  -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
+```
+
+### Example response
+```
+[
+    {
+        "username": "poty",
+        "level": 1
+    }
+]
+```
+
+## GET /api/groups/user_groups
+
+List token-user groups.
+
+### Request headers
+
+Name | Description | Example
+--- | --- | ---
+**Authorization** | token received on register or login | Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97
+
+### Response fields
+
+Name | Description
+--- | ---
+**id** | group id
+**title** | group title
+
+### Example request
+
+```
+curl -X GET \
+  https://school-1329-server.appspot.com/api/groups/user_groups \
+  -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
+```
+
+### Example response
+```
+[
+    {
+        "id": 1,
+        "title": "Sample group"
+    }
+]
+```

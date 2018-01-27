@@ -52,6 +52,10 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'level', 'password', 'code')
+        extra_kwargs = {
+            'password': {'write_only': True},
+            'code': {'write_only': True}
+        }
 
     def validate(self, data):
         """
@@ -64,5 +68,3 @@ class UserSerializer(serializers.ModelSerializer):
 
         data.pop('code')
         return data
-
-

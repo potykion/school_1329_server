@@ -24,6 +24,27 @@ class TestGroupsViews(GroupsFixtures, UsersFixtures):
         assert response.data == {'success': True}
         assert group.users.filter(pk=user.pk).exists()
 
+    def test_remove_from_group(self, client, user_token, user, group):
+        """
+        Given user and group,
+        When add user to group,
+        And remove user from group,
+        Then group contains no users.
+        """
+        response: Response = client.post(
+            f'/api/groups/{group.pk}/add_user',
+            **user_token
+        )
+
+        response: Response = client.post(
+            f'/api/groups/{group.pk}/remove_user',
+            **user_token
+        )
+
+        assert response.status_code == 200
+        assert response.data == {'success': True}
+        assert not group.users.filter(pk=user.pk).exists()
+
     def test_groups_list(self, client, user_token, groups):
         """
         Given groups,
@@ -92,5 +113,42 @@ class TestGroupsViews(GroupsFixtures, UsersFixtures):
         """
         response: Response = client.delete(f'/api/groups/{group.pk}', **user_token)
 
-        assert response.status_code == 204
+        assert response.status_code == 200
+        assert response.data == {'success': True}
         assert not Group.objects.filter(pk=group.pk).exists()
+
+    def test_user_groups(self, client, user_token, user, group):
+        """
+        Given user and group,
+        When add user to group,
+        And list user groups,
+        Then response contains given group.
+        """
+        client.post(f'/api/groups/{group.pk}/add_user', **user_token)
+
+        response = client.get('/api/groups/user_groups', **user_token)
+
+        assert response.data == [
+            {'id': 1, 'title': group.title}
+        ]
+
+    def test_group_users(self, client, user_token, user, group):
+        """
+        Given user and group,
+        When add user to group,
+        And list user groups,
+        Then response contains given group.
+        """
+        client.post(
+            f'/api/groups/{group.pk}/add_user',
+            **user_token
+        )
+
+        response = client.get(
+            f'/api/groups/{group.pk}/users',
+            **user_token
+        )
+
+        assert response.data == [
+            {'username': user.username, 'level': user.level}
+        ]

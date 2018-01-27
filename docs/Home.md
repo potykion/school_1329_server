@@ -40,6 +40,11 @@ Methods for group CRUD and user adding to groups.
 - [PUT /api/groups/{id}](https://github.com/potykion/school_1329_server/wiki/Groups#post-apigroups) - Update group with {id}.
 - [DELETE /api/groups/{id}](https://github.com/potykion/school_1329_server/wiki/Groups#delete-apigroupsid) - Delete group with {id}.
 - [POST /api/groups/{id}/add_user](https://github.com/potykion/school_1329_server/wiki/Groups#post-apigroupsidadd_user) - Add token-user to group with {id}.
+- [POST /api/groups/{id}/remove_user](https://github.com/potykion/school_1329_server/wiki/Groups#post-apigroupsidremove_user) - Remove token-user to group with {id}.
+- [GET /api/groups/{id}/users](https://github.com/potykion/school_1329_server/wiki/Groups#get-apigroupsidusers) - List users from group with {id}.
+- [GET /api/groups/user_groups](https://github.com/potykion/school_1329_server/wiki/Groups#get-apigroupsuser_groups) - List token-user groups.
+
+
 
 
 
