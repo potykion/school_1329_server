@@ -23,6 +23,12 @@ API docs can be found [here](https://github.com/potykion/school_1329_server/wiki
     pipenv run python manage.py migrate
     ```
 
+- Collect and upload static to GCS:
+    ```
+    python manage.py collectstatic
+    gsutil rsync -R static/ gs://sch1329
+    ```
+
 - Deploy to GAE:
     ```
     gcloud app deploy
