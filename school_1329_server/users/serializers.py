@@ -64,3 +64,5 @@ class UserSerializer(serializers.ModelSerializer):
 
         data.pop('code')
         return data
+
+

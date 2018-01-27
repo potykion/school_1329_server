@@ -1,9 +1,12 @@
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import list_route
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from school_1329_server.users import serializers
+from school_1329_server.users.authentications import LoginAuthentication
 from school_1329_server.users.models import RegistrationCode
 
 
@@ -52,6 +55,20 @@ class UsersViewSet(GenericViewSet):
 
         user = serializer.save()
         token = Token.objects.create(user=user)
+
+        return Response({'token': token.key}, status=200)
+
+    @list_route(
+        methods=['post'],
+        permission_classes=(IsAuthenticated,),
+        authentication_classes=(LoginAuthentication,)
+    )
+    def login(self, request: Request):
+        """
+        Validate user with {username} and {password} exists, get or create user token.
+        :return: User token.
+        """
+        token, _ = Token.objects.get_or_create(user=request.user)
 
         return Response({'token': token.key}, status=200)
 

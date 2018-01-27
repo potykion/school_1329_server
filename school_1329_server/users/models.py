@@ -17,15 +17,17 @@ class User(AbstractUser):
     """
     # password, email, username are already included
 
-    # null for admins
     level = models.IntegerField(choices=UserLevel.choices, default=0)
-
+    
 
 class RegistrationCode(models.Model):
     """
     Represents temporary password used to authorization in app.
     """
     level = models.IntegerField(choices=UserLevel.choices, default=UserLevel.teacher)
+
+    # todo creates new migration every time
     expiration_date = models.DateTimeField(default=generate_expiration_date())
     code = models.CharField(max_length=32, default=generate_registration_code())
+
     date_created = models.DateTimeField(auto_now_add=True)

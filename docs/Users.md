@@ -4,7 +4,7 @@ Methods for registration code creation and user registration.
 
 # Methods
 
-## /api/users/create_code
+## POST /api/users/create_code
 
 Create registration code with given date and level.
 
@@ -33,7 +33,8 @@ curl -X POST https://school-1329-server.appspot.com/api/users/create_code -F exp
     "code": "HGy2LdYN"
 }
 ```
-## /api/users/check_code
+
+## POST /api/users/check_code
 
 Check registration code by given value and level.
 
@@ -62,7 +63,7 @@ curl -X POST https://school-1329-server.appspot.com/api/users/check_code -F code
 }
 ```
 
-## /api/users/register
+## POST /api/users/register
 
 Validate registration code and level, create user with username and password.
 
@@ -84,6 +85,35 @@ Name | Description
 ### Example request
 ```
 curl -X POST https://school-1329-server.appspot.com/api/users/register -F level=1 -F code=HGy2LdYN -F username=poty -F password=sam
+```
+
+### Example response
+```
+{
+    "token": "b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97"
+}
+```
+
+## POST /api/users/login
+
+Validate username and password, return user token.
+
+### Request fields
+
+Name | Description
+--- | ---
+**username** | user name
+**password** | user password
+
+### Response fields
+
+Name | Description
+--- | ---
+**token** | token used in any user related request
+
+### Example request
+```
+curl -X POST https://school-1329-server.appspot.com/api/users/login -F username=poty -F password=sam
 ```
 
 ### Example response

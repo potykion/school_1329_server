@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'school_1329_server.users',
     'school_1329_server.common',
+    'school_1329_server.groups',
 
 ]
 

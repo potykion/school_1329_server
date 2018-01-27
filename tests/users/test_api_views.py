@@ -1,15 +1,16 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 import pytest
 from django.test import Client
 from django.utils import timezone
-from pytz import UTC
+from rest_framework.authtoken.models import Token
 
 from school_1329_server.users.models import UserLevel, RegistrationCode, User
+from tests.users.setup import UsersFixtures
 
 
 @pytest.mark.django_db
-class TestUsersViews:
+class TestUsersViews(UsersFixtures):
 
     @pytest.fixture()
     def registration_code(self):
@@ -129,3 +130,17 @@ class TestUsersViews:
         })
 
         assert response.status_code == 400
+
+    def test_user_login(self, client, user):
+        """
+        Given user,
+        When login user by username and password,
+        Then response contains token.
+        """
+        response = client.post(
+            '/api/users/login',
+            {'username': user.username, 'password': user.password}
+        )
+
+        token = Token.objects.get(user=user)
+        assert response.data == {'token': token.key}
