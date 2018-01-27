@@ -26,7 +26,7 @@ API docs can be found [here](https://github.com/potykion/school_1329_server/wiki
 - Collect and upload static to GCS:
     ```
     python manage.py collectstatic
-    gsutil rsync -R static/ gs://sch1329
+    gsutil rsync -R static/ gs://sch1329/static
     ```
 
 - Deploy to GAE:
