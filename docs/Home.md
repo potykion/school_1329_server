@@ -37,12 +37,23 @@ Methods for group CRUD and user adding to groups.
 
 - [GET /api/groups](https://github.com/potykion/school_1329_server/wiki/Groups#get-apigroups) - List all of the groups.
 - [POST /api/groups](https://github.com/potykion/school_1329_server/wiki/Groups#post-apigroups) - Create new group.
-- [PUT /api/groups/{id}](https://github.com/potykion/school_1329_server/wiki/Groups#post-apigroups) - Update group with {id}.
+- [PUT /api/groups/{id}](https://github.com/potykion/school_1329_server/wiki/Groups#put-apigroupsid) - Update group with {id}.
 - [DELETE /api/groups/{id}](https://github.com/potykion/school_1329_server/wiki/Groups#delete-apigroupsid) - Delete group with {id}.
 - [POST /api/groups/{id}/add_user](https://github.com/potykion/school_1329_server/wiki/Groups#post-apigroupsidadd_user) - Add token-user to group with {id}.
 - [POST /api/groups/{id}/remove_user](https://github.com/potykion/school_1329_server/wiki/Groups#post-apigroupsidremove_user) - Remove token-user to group with {id}.
-- [GET /api/groups/{id}/users](https://github.com/potykion/school_1329_server/wiki/Groups#get-apigroupsidusers) - List users from group with {id}.
 - [GET /api/groups/user_groups](https://github.com/potykion/school_1329_server/wiki/Groups#get-apigroupsuser_groups) - List token-user groups.
+- [GET /api/groups/{id}/users](https://github.com/potykion/school_1329_server/wiki/Groups#get-apigroupsidusers) - List users from group with {id}.
+- [GET /api/groups/{id}/events](https://github.com/potykion/school_1329_server/wiki/Groups#get-apigroupsidevents) - List group with {id} events.
+
+
+## Events
+
+Methods for events CRUD and event comments CRUD.
+
+- [GET /api/events](https://github.com/potykion/school_1329_server/wiki/Events#get-apievents) - List all of the events.
+- [POST /api/events](https://github.com/potykion/school_1329_server/wiki/Events#post-apievents) - Create new event.
+- [PUT /api/events/{id}](https://github.com/potykion/school_1329_server/wiki/Events#put-apieventsid) - Update event with {id}.
+- [DELETE /api/events/{id}](https://github.com/potykion/school_1329_server/wiki/Events#delete-apieventsid) - Delete event with {id}.
 
 
 

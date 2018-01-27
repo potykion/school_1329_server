@@ -1,12 +1,14 @@
 from django.test.client import encode_multipart
 from rest_framework.response import Response
 
+from school_1329_server.common.utils import datetime_to_drf
 from school_1329_server.groups.models import Group
+from tests.events.setup import EventsFixtures
 from tests.groups.setup import GroupsFixtures
 from tests.users.setup import UsersFixtures
 
 
-class TestGroupsViews(GroupsFixtures, UsersFixtures):
+class TestGroupsViews(EventsFixtures, GroupsFixtures, UsersFixtures):
 
     def test_add_to_group(self, client, user, group, user_token):
         """
@@ -136,8 +138,8 @@ class TestGroupsViews(GroupsFixtures, UsersFixtures):
         """
         Given user and group,
         When add user to group,
-        And list user groups,
-        Then response contains given group.
+        And list group users,
+        Then response contains given user.
         """
         client.post(
             f'/api/groups/{group.pk}/add_user',
@@ -151,4 +153,35 @@ class TestGroupsViews(GroupsFixtures, UsersFixtures):
 
         assert response.data == [
             {'username': user.username, 'level': user.level}
+        ]
+
+    def test_group_events(
+            self, client, user_token,
+            event, group
+    ):
+        """
+        Given group,
+        And event with group,
+        When list group events,
+        Then response contains given event.
+        """
+        response = client.get(
+            f'/api/groups/{group.pk}/events',
+            **user_token
+        )
+
+        assert response.data == [
+            {
+                'id': 1,
+
+                'title': event.title,
+                'place': event.place,
+                'description': event.description,
+
+                'created_by': event.created_by.username,
+                'participation_groups': [group.pk],
+
+                'start_date': datetime_to_drf(event.start_date),
+                'end_date': datetime_to_drf(event.end_date)
+            }
         ]

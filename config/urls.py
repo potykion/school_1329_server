@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import SimpleRouter
 
+from school_1329_server.events.views import EventsViewSet
 from school_1329_server.groups.views import GroupsViewSet
 from school_1329_server.users.views import UsersViewSet
 
 router = SimpleRouter(trailing_slash=False)
 router.register('users', UsersViewSet, 'users')
 router.register('groups', GroupsViewSet, 'groups')
+router.register('events', EventsViewSet, 'events')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

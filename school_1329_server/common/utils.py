@@ -1,10 +1,16 @@
-from django.http import HttpResponse
+from datetime import datetime
 
 
-def response_content_to_str(response: HttpResponse) -> str:
+def datetime_to_drf(datetime_: datetime):
     """
-    Convert response content to utf-8 string.
-    :param response: HttpResponse.
-    :return: UTF-8 string.
+    Convert datetime to DRF format.
+    :param datetime_: Datetime in UTC.
+    :return: Datetime string in DRF-format.
+
+    >>> datetime_to_drf(datetime(2017, 12, 18, 16, 00))
+    '2017-12-18T16:00:00Z'
     """
-    return response.content.decode('utf-8')
+    if datetime_:
+        return f'{datetime_.date()}T{datetime_.time()}Z'
+    else:
+        datetime_

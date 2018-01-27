@@ -1,6 +1,6 @@
 # Info
 
-Methods for group CRUD and user adding to groups.
+Methods for groups CRUD and user adding to groups.
 
 # Methods
 
@@ -128,6 +128,12 @@ Name | Description | Example
 --- | --- | ---
 **Authorization** | token received on register or login | Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97
 
+### Response fields
+
+Name | Description
+--- | ---
+**success** | true if group is successfully deleted
+
 ### Example request
 
 ```
@@ -137,8 +143,11 @@ curl -X DELETE https://school-1329-server.appspot.com/api/groups/1 \
 
 ### Example response
 
-Response contains nothing, but status code is 204 No Content.
-
+```
+{
+    "success": true
+}
+```
 
 ## POST /api/groups/{id}/add_user
 
@@ -185,7 +194,7 @@ Name | Description | Example
 
 Name | Description
 --- | ---
-**success** | true if user is successfully added to group
+**success** | true if user is successfully removed to group
 
 ### Example request
 
@@ -200,6 +209,41 @@ curl -X POST \
 {
     "success": true
 }
+```
+
+## GET /api/groups/user_groups
+
+List token-user groups.
+
+### Request headers
+
+Name | Description | Example
+--- | --- | ---
+**Authorization** | token received on register or login | Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97
+
+### Response fields
+
+Name | Description
+--- | ---
+**id** | group id
+**title** | group title
+
+### Example request
+
+```
+curl -X GET \
+  https://school-1329-server.appspot.com/api/groups/user_groups \
+  -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
+```
+
+### Example response
+```
+[
+    {
+        "id": 1,
+        "title": "Sample group"
+    }
+]
 ```
 
 ## GET /api/groups/{id}/users
@@ -237,9 +281,9 @@ curl -X GET \
 ]
 ```
 
-## GET /api/groups/user_groups
+## GET /api/groups/{id}/events
 
-List token-user groups.
+List group with {id} events.
 
 ### Request headers
 
@@ -251,14 +295,20 @@ Name | Description | Example
 
 Name | Description
 --- | ---
-**id** | group id
-**title** | group title
+**id** | event id
+**title** | event title
+**place** | event place
+**description** | event description
+**created_by** | username of event creator
+**participation_groups** | list of group ids that participate in the event
+**start_date** | event start date in UTC
+**end_date** | event end date in UTC
 
 ### Example request
 
 ```
 curl -X GET \
-  https://school-1329-server.appspot.com/api/groups/user_groups \
+  https://school-1329-server.appspot.com/api/groups/1/events \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
 ```
 
@@ -267,7 +317,15 @@ curl -X GET \
 [
     {
         "id": 1,
-        "title": "Sample group"
+        "title": "Sample event",
+        "place": "School",
+        "description": "",
+        "created_by": "poty",
+        "participation_groups": [
+            1
+        ],
+        "start_date": "2018-03-08T12:00Z",
+        "end_date": null
     }
 ]
 ```

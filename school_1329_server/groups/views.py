@@ -1,17 +1,18 @@
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import detail_route, list_route
-from rest_framework.mixins import ListModelMixin, CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet, GenericViewSet
+from rest_framework.viewsets import ModelViewSet
 
+from school_1329_server.common.mixins import SuccessDestroyMixin
+from school_1329_server.events.serializers import EventSerializer
 from school_1329_server.groups.models import Group
 from school_1329_server.groups.serializers import GroupSerializer
 from school_1329_server.users.serializers import UserSerializer
 
 
-class GroupsViewSet(ModelViewSet):
+class GroupsViewSet(SuccessDestroyMixin, ModelViewSet):
     """
     Group related methods.
 
@@ -35,14 +36,6 @@ class GroupsViewSet(ModelViewSet):
         group.users.add(request.user)
         group.save()
 
-        return Response({'success': True})
-
-    def destroy(self, request, *args, **kwargs):
-        """
-        Delete group with {pk}.
-        :return: Success flag.
-        """
-        response = super(GroupsViewSet, self).destroy(request, *args, **kwargs)
         return Response({'success': True})
 
     @detail_route(methods=['post', 'delete'])
@@ -78,8 +71,21 @@ class GroupsViewSet(ModelViewSet):
         serializer: UserSerializer = self.get_serializer(users, many=True)
         return Response(serializer.data)
 
+    @detail_route()
+    def events(self, request, pk=None):
+        """
+        List group events.
+        :return: Group events.
+        """
+        group = self.get_object()
+        events = group.event_set.all()
+        serializer: EventSerializer = self.get_serializer(events, many=True)
+        return Response(serializer.data)
+
     def get_serializer_class(self):
         if self.action == 'users':
             return UserSerializer
+        elif self.action == 'events':
+            return EventSerializer
         else:
             return GroupSerializer
