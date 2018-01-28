@@ -15,9 +15,11 @@ class Event(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField(null=True)
 
-# class EventComment(models.Model):
-#     text = models.TextField()
-#
-#     created_by = models.OneToOneField(User, on_delete=models.CASCADE)
-#
-#     created = models.DateTimeField(auto_now_add=True)
+
+class EventComment(models.Model):
+    text = models.TextField()
+
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='comments')
+
+    created = models.DateTimeField(auto_now_add=True)

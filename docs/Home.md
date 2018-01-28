@@ -48,12 +48,21 @@ Methods for group CRUD and user adding to groups.
 
 ## Events
 
-Methods for events CRUD and event comments CRUD.
+Methods for events CRUD.
 
 - [GET /api/events](https://github.com/potykion/school_1329_server/wiki/Events#get-apievents) - List all of the events.
 - [POST /api/events](https://github.com/potykion/school_1329_server/wiki/Events#post-apievents) - Create new event.
 - [PUT /api/events/{id}](https://github.com/potykion/school_1329_server/wiki/Events#put-apieventsid) - Update event with {id}.
 - [DELETE /api/events/{id}](https://github.com/potykion/school_1329_server/wiki/Events#delete-apieventsid) - Delete event with {id}.
+
+## Event Comments
+
+Methods for event comments CRUD.
+
+- [GET /api/event_comments](https://github.com/potykion/school_1329_server/wiki/Event-Comments#get-apievent_comments) - List event comments.
+- [POST /api/event_comments](https://github.com/potykion/school_1329_server/wiki/Event-Comments#post-apievent_comments) - Create new event comment.
+- [DELETE /api/event_comments/{id}](https://github.com/potykion/school_1329_server/wiki/Event-Comments#delete-apieventsid) - Delete event comment with {id}.
+
 
 
 

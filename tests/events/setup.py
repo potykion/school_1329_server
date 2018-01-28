@@ -4,7 +4,7 @@ from datetime import datetime, time
 import pytz
 from django.utils import timezone
 
-from school_1329_server.events.models import Event
+from school_1329_server.events.models import Event, EventComment
 from tests.groups.setup import GroupsFixtures
 from tests.users.setup import UsersFixtures
 
@@ -39,3 +39,13 @@ class EventsFixtures(GroupsFixtures, UsersFixtures):
         event.save()
 
         return event
+
+
+class EventCommentsFixtures(EventsFixtures):
+    @pytest.fixture()
+    def event_comments(self, user, event):
+        return EventComment.objects.bulk_create([
+            EventComment(id=1, created_by=user, event=event, text='op'),
+            EventComment(id=2, created_by=user, event=event, text='oppa'),
+            EventComment(id=3, created_by=user, event=event, text='op oppa'),
+        ])

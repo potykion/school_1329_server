@@ -1,6 +1,6 @@
 # Info
 
-Methods for events CRUD and event comments CRUD.
+Methods for event comments CRUD.
 
 # Methods
 
