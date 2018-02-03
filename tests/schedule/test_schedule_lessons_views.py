@@ -28,7 +28,8 @@ class TestScheduleItemsViews(ScheduleFixtures, UsersFixtures):
                     'id': 1,
                     'start_time': '12:00',
                     'subject': 'Русский',
-                    'teacher': 'galina ivanovna'
+                    'teacher': 'galina ivanovna',
+                    'place': 'wkola'
                 }
             ],
             2: [],
@@ -72,6 +73,7 @@ class TestScheduleItemsViews(ScheduleFixtures, UsersFixtures):
         And response contains new schedule data.
         """
         new_schedule_data = {
+            'place': 'wkola2',
             'start_time': '13:00',
             'weekday': 2,
             'subject': schedule_item.subject.pk,
@@ -91,8 +93,9 @@ class TestScheduleItemsViews(ScheduleFixtures, UsersFixtures):
         assert str(item.start_time)[:-3] == '13:00'
         assert response.data == {
             'id': item.pk,
-
             'teacher': teacher.username,
+
+            'place': new_schedule_data['place'],
             'groups': new_schedule_data['groups'],
             'start_time': new_schedule_data['start_time'],
             'subject': new_schedule_data['subject'],

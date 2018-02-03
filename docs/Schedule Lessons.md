@@ -22,6 +22,7 @@ Name | Description
 **weekday** | lesson weekday (1 - monday, 2 - tuesday, etc.)
 **groups** | list of lesson groups
 **subject** | lesson subject
+**place** | lesson place
 
 ### Response fields
 
@@ -33,6 +34,7 @@ Name | Description
 **groups** | list of lesson groups
 **subject** | lesson subject
 **teacher** | lesson teacher username
+**place** | lesson place
 
 ### Example request
 
@@ -45,7 +47,8 @@ curl -X POST \
     "start_time": "12:00",
     "weekday": 1,
     "groups": [1],
-    "subject": 1
+    "subject": 1,
+    "place": "wkola"
     }'
 ```
 
@@ -53,6 +56,7 @@ curl -X POST \
 ```
 {
     "id": 1,
+    "place": "wkola",
     "start_time": "12:00",
     "weekday": 1,
     "groups": [1],
@@ -79,7 +83,7 @@ Name | Description
 **weekday** | lesson weekday (1 - monday, 2 - tuesday, etc.)
 **groups** | list of lesson groups
 **subject** | lesson subject
-
+**place** | lesson place
 
 ### Response fields
 
@@ -91,6 +95,7 @@ Name | Description
 **groups** | list of lesson groups
 **subject** | lesson subject
 **teacher** | lesson teacher username
+**place** | lesson place
 
 ### Example request
 
@@ -103,7 +108,8 @@ curl -X PUT \
     "start_time": "13:00",
     "weekday": 2,
     "groups": [1],
-    "subject": 1
+    "subject": 1,
+    "place": "wkola2"
     }'
 ```
 
@@ -111,6 +117,7 @@ curl -X PUT \
 ```
 {
     "id": 1,
+    "place": "wkola2",
     "start_time": "13:00",
     "weekday": 2,
     "groups": [1],
@@ -171,7 +178,7 @@ Name | Description
 **teacher** | lesson teacher username
 **subject** | lesson subject title
 **start_time** | lesson start time
-
+**place** | lesson place
 
 ### Example request
 
@@ -189,7 +196,8 @@ curl -X GET \
             "id": 1,
             "start_time": "12:00",
             "subject": "Русский",
-            "teacher": "poty"
+            "teacher": "poty",
+            "place": "wkola"
         }
     ],
     "2": [],

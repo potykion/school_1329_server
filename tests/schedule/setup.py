@@ -15,7 +15,8 @@ class ScheduleFixtures(GroupsFixtures):
             teacher=teacher,
             subject=subject,
             start_time='12:00',
-            weekday=Weekdays.Monday
+            weekday=Weekdays.Monday,
+            place='wkola'
         )
         item.groups.add(group_with_user)
         item.save()
@@ -26,6 +27,7 @@ class ScheduleFixtures(GroupsFixtures):
         return {
             'subject': subject.pk,
             'groups': [group_with_user.pk],
+            'place': 'wkola',
             'start_time': '12:00',
             'weekday': 1
         }

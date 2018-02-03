@@ -15,7 +15,7 @@ class ScheduleLessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = ScheduleLesson
         fields = (
-            'id', 'start_time', 'weekday',
+            'id', 'start_time', 'weekday', 'place',
             'subject', 'teacher', 'groups'
         )
         extra_kwargs = {
@@ -30,10 +30,6 @@ class UserScheduleLessonsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ScheduleLesson
         fields = (
-            'id', 'start_time', 'weekday',
-            'subject', 'teacher', 'groups'
+            'id', 'start_time', 'weekday', 'place',
+            'subject', 'teacher',
         )
-        extra_kwargs = {
-            'groups': {'write_only': True},
-            'teacher': {'required': False}
-        }
