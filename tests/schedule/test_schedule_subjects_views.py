@@ -1,11 +1,12 @@
 from django.test.client import encode_multipart
 
+from school_1329_server.common.utils import encode_data
 from school_1329_server.schedule.models import ScheduleSubject
 from tests.schedule.setup import ScheduleFixtures
 from tests.users.setup import UsersFixtures
 
 
-class TestSubjectsViews(ScheduleFixtures, UsersFixtures):
+class TestScheduleSubjectsViews(ScheduleFixtures, UsersFixtures):
     def test_list_subjects(
             self, client, user_token,
             subject
@@ -72,9 +73,7 @@ class TestSubjectsViews(ScheduleFixtures, UsersFixtures):
         """
         subject_title = 'ЯРусский'
 
-        boundary_string = 'BoUnDaRyStRiNg'
-        encoded_data = encode_multipart(boundary_string, {'title': subject_title})
-        content_type = f'multipart/form-data; boundary={boundary_string}'
+        encoded_data, content_type = encode_data({'title': subject_title})
 
         response = client.put(
             f'/api/schedule_subjects/{subject.pk}',

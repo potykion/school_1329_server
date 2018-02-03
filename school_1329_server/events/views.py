@@ -24,7 +24,7 @@ class EventsViewSet(SuccessDestroyMixin, ModelViewSet):
         Get user groups, render user groups events.
         :return: User events.
         """
-        user_groups = Group.objects.filter(users__in=[self.request.user])
+        user_groups = Group.objects.filter(users__in=[request.user])
         user_events = Event.objects.filter(participation_groups__in=user_groups)
         serializer: EventSerializer = self.get_serializer(user_events, many=True)
         return Response(serializer.data)

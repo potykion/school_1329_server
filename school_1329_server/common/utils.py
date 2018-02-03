@@ -1,7 +1,10 @@
 from datetime import datetime
+from typing import Tuple, Dict, Union
+
+from django.test.client import encode_multipart
 
 
-def datetime_to_drf(datetime_: datetime):
+def datetime_to_drf(datetime_: datetime) -> Union[str, datetime]:
     """
     Convert datetime to DRF format.
     :param datetime_: Datetime in UTC.
@@ -13,4 +16,16 @@ def datetime_to_drf(datetime_: datetime):
     if datetime_:
         return f'{datetime_.date()}T{datetime_.time()}Z'
     else:
-        datetime_
+        return datetime_
+
+
+def encode_data(data) -> Tuple[Dict, str]:
+    """
+    Encode data for PUT requests.
+    :param data: Dict.
+    :return: Encoded data and content type with boundary string.
+    """
+    boundary_string = 'BoUnDaRyStRiNg'
+    encoded_data = encode_multipart(boundary_string, data)
+    content_type = f'multipart/form-data; boundary={boundary_string}'
+    return encoded_data, content_type

@@ -75,5 +75,13 @@ Methods for schedule subject CRUD.
 - [DELETE /api/schedule_subjects/{id}](https://github.com/potykion/school_1329_server/wiki/Schedule-Subjects#delete-apischedule_subjectsid) - Delete subject with {id}.
 
 
+## Schedule Lessons
+
+Methods for schedule lessons CRUD and schedule listing.
+
+- [POST /api/schedule_lessons](https://github.com/potykion/school_1329_server/wiki/Schedule-Lessons#post-apischedule_lessons) - Create new schedule lesson.
+- [PUT /api/schedule_lessons/{id}](https://github.com/potykion/school_1329_server/wiki/Schedule-Lessons#put-apischedule_lessonsid) - Update subject with {id}.
+- [DELETE /api/schedule_lessons/{id}](https://github.com/potykion/school_1329_server/wiki/Schedule-Lessons#delete-apischedule_lessonsid) - Delete subject lesson with {id}.
+- [GET /api/schedule_lessons/user_schedule](https://github.com/potykion/school_1329_server/wiki/Schedule-Lessons#get-apischedule_lessonsuser_schedule) - List user schedule.
 
 

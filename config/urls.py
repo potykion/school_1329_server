@@ -19,7 +19,7 @@ from rest_framework.routers import SimpleRouter
 
 from school_1329_server.events.views import EventsViewSet, EventCommentsViewSet
 from school_1329_server.groups.views import GroupsViewSet
-from school_1329_server.schedule.views import SubjectViewSet
+from school_1329_server.schedule.views import ScheduleSubjectViewSet, ScheduleLessonViewSet
 from school_1329_server.users.views import UsersViewSet
 
 router = SimpleRouter(trailing_slash=False)
@@ -27,7 +27,9 @@ router.register('users', UsersViewSet, 'users')
 router.register('groups', GroupsViewSet, 'groups')
 router.register('events', EventsViewSet, 'events')
 router.register('event_comments', EventCommentsViewSet, 'event_comments')
-router.register('schedule_subjects', SubjectViewSet, 'schedule_subjects')
+router.register('schedule_lessons', ScheduleLessonViewSet, 'schedule_lessons')
+router.register('schedule_subjects', ScheduleSubjectViewSet, 'schedule_subjects')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

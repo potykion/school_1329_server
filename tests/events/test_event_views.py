@@ -3,7 +3,7 @@ from datetime import timedelta
 from django.test.client import encode_multipart
 from django.utils import timezone
 
-from school_1329_server.common.utils import datetime_to_drf
+from school_1329_server.common.utils import datetime_to_drf, encode_data
 from school_1329_server.events.models import Event
 from tests.events.setup import EventsFixtures
 
@@ -95,9 +95,7 @@ class TestEventsViews(EventsFixtures):
             'end_date': end_date,
         }
 
-        boundary_string = 'BoUnDaRyStRiNg'
-        encoded_data = encode_multipart(boundary_string, new_event_data)
-        content_type = f'multipart/form-data; boundary={boundary_string}'
+        encoded_data, content_type = encode_data(new_event_data)
 
         response = client.put(
             f'/api/events/{event.pk}',
