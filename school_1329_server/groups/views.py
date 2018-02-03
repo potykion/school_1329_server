@@ -1,6 +1,4 @@
-from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import detail_route, list_route
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
@@ -22,8 +20,6 @@ class GroupsViewSet(SuccessDestroyMixin, ModelViewSet):
     - destroy (DELETE: /api/groups/{pk}) - delete Group with pk
     - put (PUT: /api/groups/{pk}) - update Group with pk
     """
-    permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
     queryset = Group.objects.all()
 
     @detail_route(methods=['post'])

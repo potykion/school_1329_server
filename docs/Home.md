@@ -65,6 +65,14 @@ Methods for event comments CRUD.
 - [DELETE /api/event_comments/{id}](https://github.com/potykion/school_1329_server/wiki/Event-Comments#delete-apieventsid) - Delete event comment with {id}.
 
 
+## Schedule Subjects
+
+Methods for schedule subject CRUD.
+
+- [GET /api/schedule_subjects](https://github.com/potykion/school_1329_server/wiki/Schedule-Subjects#get-apischedule_subjects) - List all of the subjects.
+- [POST /api/schedule_subjects](https://github.com/potykion/school_1329_server/wiki/Schedule-Subjects#post-apischedule_subjects) - Create new subject.
+- [PUT /api/schedule_subjects/{id}](https://github.com/potykion/school_1329_server/wiki/Schedule-Subjects#put-apischedule_subjectsid) - Update subject with {id}.
+- [DELETE /api/schedule_subjects/{id}](https://github.com/potykion/school_1329_server/wiki/Schedule-Subjects#delete-apischedule_subjectsid) - Delete subject with {id}.
 
 
 

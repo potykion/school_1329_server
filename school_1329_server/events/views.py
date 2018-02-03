@@ -1,7 +1,4 @@
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.decorators import detail_route, list_route
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.request import Request
+from rest_framework.decorators import list_route
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
@@ -12,8 +9,6 @@ from school_1329_server.groups.models import Group
 
 
 class EventsViewSet(SuccessDestroyMixin, ModelViewSet):
-    permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
     serializer_class = EventSerializer
     queryset = Event.objects.all()
 
@@ -35,11 +30,7 @@ class EventsViewSet(SuccessDestroyMixin, ModelViewSet):
         return Response(serializer.data)
 
 
-
-
 class EventCommentsViewSet(SuccessDestroyMixin, ModelViewSet):
-    permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
     serializer_class = EventCommentSerializer
 
     def get_queryset(self):

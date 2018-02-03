@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'school_1329_server.common',
     'school_1329_server.groups',
     'school_1329_server.events',
+    'school_1329_server.schedule',
 
 ]
 
@@ -126,3 +127,12 @@ LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = reverse_lazy('list_codes')
 
 SHELL_PLUS = "bpython"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}

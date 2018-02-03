@@ -35,7 +35,7 @@ Name | Description
 ```
 curl -X GET \
   https://school-1329-server.appspot.com/api/event_comments \
-  -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
+  -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97' \
   -F event=1
 ```
 
@@ -81,7 +81,7 @@ Name | Description
 
 ```
 curl -X POST \
-  https://school-1329-server.appspot.com/api/event_comment \
+  https://school-1329-server.appspot.com/api/event_comments \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97' \
   -H 'content-type: application/json' \
   -d '{
@@ -100,7 +100,7 @@ curl -X POST \
 }
 ```
 
-## DELETE /api/events/{id}
+## DELETE /api/event_comments/{id}
 
 Delete event comment with {id}.
 

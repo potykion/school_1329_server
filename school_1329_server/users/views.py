@@ -1,6 +1,6 @@
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import list_route
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -14,6 +14,8 @@ class UsersViewSet(GenericViewSet):
     """
     User related actions (registration code generation, user registration, etc.).
     """
+    permission_classes = (AllowAny,)
+    authentication_classes = ()
 
     @list_route(methods=['post'])
     def create_code(self, request):
