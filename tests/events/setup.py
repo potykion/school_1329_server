@@ -12,11 +12,11 @@ from tests.users.setup import UsersFixtures
 class EventsFixtures(GroupsFixtures, UsersFixtures):
 
     @pytest.fixture()
-    def event_data(self, group):
+    def event_data(self, group_with_user):
         return {
             'title': 'Event 1',
             'place': 'Sch1329',
-            'participation_groups': [group.pk],
+            'participation_groups': [group_with_user.pk],
             'start_date': datetime.combine(
                 timezone.now().date(),
                 time(12, 00, tzinfo=pytz.UTC)
@@ -24,7 +24,7 @@ class EventsFixtures(GroupsFixtures, UsersFixtures):
         }
 
     @pytest.fixture
-    def event(self, user, group):
+    def event(self, user, group_with_user):
         event = Event.objects.create(
             title='Линейка',
             place='Школка',
@@ -35,7 +35,7 @@ class EventsFixtures(GroupsFixtures, UsersFixtures):
             start_date=datetime.now()
         )
 
-        event.participation_groups.add(*[group])
+        event.participation_groups.add(group_with_user)
         event.save()
 
         return event

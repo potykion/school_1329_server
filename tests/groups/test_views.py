@@ -157,7 +157,7 @@ class TestGroupsViews(EventsFixtures, GroupsFixtures, UsersFixtures):
 
     def test_group_events(
             self, client, user_token,
-            event, group
+            event, group_with_user
     ):
         """
         Given group,
@@ -166,7 +166,7 @@ class TestGroupsViews(EventsFixtures, GroupsFixtures, UsersFixtures):
         Then response contains given event.
         """
         response = client.get(
-            f'/api/groups/{group.pk}/events',
+            f'/api/groups/{group_with_user.pk}/events',
             **user_token
         )
 
@@ -179,7 +179,7 @@ class TestGroupsViews(EventsFixtures, GroupsFixtures, UsersFixtures):
                 'description': event.description,
 
                 'created_by': event.created_by.username,
-                'participation_groups': [group.pk],
+                'participation_groups': [group_with_user.pk],
 
                 'start_date': datetime_to_drf(event.start_date),
                 'end_date': datetime_to_drf(event.end_date)

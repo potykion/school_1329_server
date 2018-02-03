@@ -42,7 +42,7 @@ class TestEventsViews(EventsFixtures):
     def test_event_list(
             self, client, user_token,
             event,
-            user, group
+            user, group_with_user
     ):
         """
         Given event,
@@ -63,7 +63,7 @@ class TestEventsViews(EventsFixtures):
                 'description': event.description,
 
                 'created_by': user.username,
-                'participation_groups': [group.pk],
+                'participation_groups': [group_with_user.pk],
 
                 'start_date': datetime_to_drf(event.start_date),
                 'end_date': None
@@ -138,3 +138,29 @@ class TestEventsViews(EventsFixtures):
         assert response.status_code == 200
         assert response.data == {'success': True}
         assert not Event.objects.filter(pk=event.pk).exists()
+
+    def test_user_events(
+            self, client, user_token,
+            event, user, group_with_user
+    ):
+        """
+        Given event and user,
+        When fetch user events,
+        Then response contains user events.
+        """
+        response = client.get('/api/events/user_events', **user_token)
+
+        assert len(response.data) == 1
+        assert response.data[0] == {
+            'id': 1,
+
+            'title': event.title,
+            'place': event.place,
+            'description': event.description,
+
+            'created_by': user.username,
+            'participation_groups': [group_with_user.pk],
+
+            'start_date': datetime_to_drf(event.start_date),
+            'end_date': datetime_to_drf(event.end_date)
+        }

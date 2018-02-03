@@ -8,6 +8,7 @@ from rest_framework.viewsets import ModelViewSet
 from school_1329_server.common.mixins import SuccessDestroyMixin
 from school_1329_server.events.models import Event, EventComment
 from school_1329_server.events.serializers import EventSerializer, EventCommentSerializer
+from school_1329_server.groups.models import Group
 
 
 class EventsViewSet(SuccessDestroyMixin, ModelViewSet):
@@ -21,6 +22,19 @@ class EventsViewSet(SuccessDestroyMixin, ModelViewSet):
 
     def perform_update(self, serializer):
         serializer.save(created_by=self.request.user)
+
+    @list_route()
+    def user_events(self, request, *args, **kwargs):
+        """
+        Get user groups, render user groups events.
+        :return: User events.
+        """
+        user_groups = Group.objects.filter(users__in=[self.request.user])
+        user_events = Event.objects.filter(participation_groups__in=user_groups)
+        serializer: EventSerializer = self.get_serializer(user_events, many=True)
+        return Response(serializer.data)
+
+
 
 
 class EventCommentsViewSet(SuccessDestroyMixin, ModelViewSet):

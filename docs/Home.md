@@ -54,6 +54,7 @@ Methods for events CRUD.
 - [POST /api/events](https://github.com/potykion/school_1329_server/wiki/Events#post-apievents) - Create new event.
 - [PUT /api/events/{id}](https://github.com/potykion/school_1329_server/wiki/Events#put-apieventsid) - Update event with {id}.
 - [DELETE /api/events/{id}](https://github.com/potykion/school_1329_server/wiki/Events#delete-apieventsid) - Delete event with {id}.
+- [GET /api/events/user_events](https://github.com/potykion/school_1329_server/wiki/Events#get-apieventsuser_events) - List user events.
 
 ## Event Comments
 

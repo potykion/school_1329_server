@@ -207,3 +207,53 @@ curl -X DELETE \
     "success": true
 }
 ```
+
+## GET /api/events/user_events
+
+List user events.
+
+### Request headers
+
+Name | Description | Example
+--- | --- | ---
+**Authorization** | token received on register or login | Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97
+
+### Response fields
+
+Name | Description
+--- | ---
+**id** | event id
+**title** | event title
+**place** | event place
+**description** | event description
+**created_by** | username of event creator
+**participation_groups** | list of group ids that participate in the event
+**start_date** | event start date in UTC
+**end_date** | event end date in UTC
+
+
+### Example request
+
+```
+curl -X GET \
+  https://school-1329-server.appspot.com/api/events/user_events \
+  -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
+```
+
+### Example response
+```
+[
+    {
+        "id": 1,
+        "title": "Sample event",
+        "place": "School",
+        "description": "",
+        "created_by": "poty",
+        "participation_groups": [
+            1
+        ],
+        "start_date": "2018-03-08T12:00Z",
+        "end_date": null
+    }
+]
+```
