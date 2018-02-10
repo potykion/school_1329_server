@@ -24,7 +24,9 @@ Name | Description
 ### Example request
 
 ```
-curl -X POST https://school-1329-server.appspot.com/api/users/create_code -F expiration_date=2017-12-18T12:00:00 -F level=1
+curl -X POST https://school-1329.herokuapp.com/api/users/create_code \
+  -F expiration_date=2017-12-18T12:00:00 \
+  -F level=1
 ```
 
 ### Example response 
@@ -53,7 +55,9 @@ Name | Description
 
 ### Example request
 ```
-curl -X POST https://school-1329-server.appspot.com/api/users/check_code -F code=HGy2LdYN -F level=1
+curl -X POST https://school-1329.herokuapp.com/api/users/check_code \
+  -F code=HGy2LdYN \
+  -F level=1
 ```
 
 ### Example response
@@ -84,7 +88,11 @@ Name | Description
 
 ### Example request
 ```
-curl -X POST https://school-1329-server.appspot.com/api/users/register -F level=1 -F code=HGy2LdYN -F username=poty -F password=sam
+curl -X POST https://school-1329.herokuapp.com/api/users/register \
+  -F level=1 \
+  -F code=HGy2LdYN \
+  -F username=poty \
+  -F password=sam
 ```
 
 ### Example response
@@ -113,7 +121,9 @@ Name | Description
 
 ### Example request
 ```
-curl -X POST https://school-1329-server.appspot.com/api/users/login -F username=poty -F password=sam
+curl -X POST https://school-1329.herokuapp.com/api/users/login \
+  -F username=poty \
+  -F password=sam
 ```
 
 ### Example response

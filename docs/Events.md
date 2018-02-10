@@ -32,7 +32,7 @@ Name | Description
 
 ```
 curl -X GET \
-  https://school-1329-server.appspot.com/api/events \
+  https://school-1329.herokuapp.com/api/events \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
 ```
 
@@ -92,7 +92,7 @@ Name | Description
 
 ```
 curl -X POST \
-  https://school-1329-server.appspot.com/api/events \
+  https://school-1329.herokuapp.com/api/events \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97' \
   -H 'content-type: application/json' \
   -d '{
@@ -151,7 +151,7 @@ Name | Description
 
 ```
 curl -X PUT \
-  https://school-1329-server.appspot.com/api/events/1 \
+  https://school-1329.herokuapp.com/api/events/1 \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97' \
   -H 'content-type: application/json' \
   -d '{
@@ -196,7 +196,7 @@ Name | Description
 
 ```
 curl -X DELETE \
-  https://school-1329-server.appspot.com/api/events/1 \
+  https://school-1329.herokuapp.com/api/events/1 \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97' \
 ```
 
@@ -236,7 +236,7 @@ Name | Description
 
 ```
 curl -X GET \
-  https://school-1329-server.appspot.com/api/events/user_events \
+  https://school-1329.herokuapp.com/api/events/user_events \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
 ```
 

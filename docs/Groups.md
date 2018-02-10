@@ -25,7 +25,7 @@ Name | Description
 
 ```
 curl -X GET \
-  https://school-1329-server.appspot.com/api/groups \
+  https://school-1329.herokuapp.com/api/groups \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
 ```
 
@@ -65,7 +65,7 @@ Name | Description
 ### Example request
 
 ```
-curl -X POST https://school-1329-server.appspot.com/api/groups \
+curl -X POST https://school-1329.herokuapp.com/api/groups \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97' \
   -F 'title=Sample group'
 ```
@@ -105,7 +105,7 @@ Name | Description
 ### Example request
 
 ```
-curl -X PUT https://school-1329-server.appspot.com/api/groups/1 \
+curl -X PUT https://school-1329.herokuapp.com/api/groups/1 \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97' \
   -F title=Sam
 ```
@@ -137,7 +137,7 @@ Name | Description
 ### Example request
 
 ```
-curl -X DELETE https://school-1329-server.appspot.com/api/groups/1 \
+curl -X DELETE https://school-1329.herokuapp.com/api/groups/1 \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
 ```
 
@@ -169,7 +169,7 @@ Name | Description
 
 ```
 curl -X POST \
-  https://school-1329-server.appspot.com/api/groups/1/add_user \
+  https://school-1329.herokuapp.com/api/groups/1/add_user \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
 ```
 
@@ -200,7 +200,7 @@ Name | Description
 
 ```
 curl -X POST \
-  https://school-1329-server.appspot.com/api/groups/1/remove_user \
+  https://school-1329.herokuapp.com/api/groups/1/remove_user \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
 ```
 
@@ -232,7 +232,7 @@ Name | Description
 
 ```
 curl -X GET \
-  https://school-1329-server.appspot.com/api/groups/user_groups \
+  https://school-1329.herokuapp.com/api/groups/user_groups \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
 ```
 
@@ -267,7 +267,7 @@ Name | Description
 
 ```
 curl -X GET \
-  https://school-1329-server.appspot.com/api/groups/1/users \
+  https://school-1329.herokuapp.com/api/groups/1/users \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
 ```
 
@@ -308,7 +308,7 @@ Name | Description
 
 ```
 curl -X GET \
-  https://school-1329-server.appspot.com/api/groups/1/events \
+  https://school-1329.herokuapp.com/api/groups/1/events \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
 ```
 

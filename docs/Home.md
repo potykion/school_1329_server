@@ -4,7 +4,7 @@ School 1329 Server is used for registration code generation, user registration, 
 
 API requirements can be found [here](https://docs.google.com/document/d/1U416C0ZFSe9_fd1c0a17ZRZ5n9iF6L5hXCzhCVqJKSE/edit?usp=sharing).
 
-**Base url:** https://school-1329-server.appspot.com
+**Base url:** https://school-1329.herokuapp.com
 
 # Authorization
 
@@ -83,5 +83,3 @@ Methods for schedule lessons CRUD and schedule listing.
 - [PUT /api/schedule_lessons/{id}](https://github.com/potykion/school_1329_server/wiki/Schedule-Lessons#put-apischedule_lessonsid) - Update subject with {id}.
 - [DELETE /api/schedule_lessons/{id}](https://github.com/potykion/school_1329_server/wiki/Schedule-Lessons#delete-apischedule_lessonsid) - Delete subject lesson with {id}.
 - [GET /api/schedule_lessons/user_schedule](https://github.com/potykion/school_1329_server/wiki/Schedule-Lessons#get-apischedule_lessonsuser_schedule) - List user schedule.
-
-
