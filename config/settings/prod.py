@@ -11,3 +11,5 @@ ALLOWED_HOSTS = [
 ]
 
 DATABASES = {'default': dj_database_url.config()}
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
