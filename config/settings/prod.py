@@ -7,7 +7,8 @@ DEBUG = False
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 ALLOWED_HOSTS = [
-    '.appspot.com'
+    '.appspot.com',
+    ".herokuapp.com"
 ]
 
 DATABASES = {'default': dj_database_url.config()}
