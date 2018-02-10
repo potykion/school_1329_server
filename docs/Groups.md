@@ -41,7 +41,7 @@ curl -X GET \
 
 ## POST /api/groups
 
-Create new group.
+Create new group, token-user automatically joins to group.
 
 ### Request headers
 

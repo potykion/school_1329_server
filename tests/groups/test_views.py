@@ -63,12 +63,14 @@ class TestGroupsViews(EventsFixtures, GroupsFixtures, UsersFixtures):
             {'id': 2, 'title': 'Group 2'}
         ]
 
-    def test_create_group(self, client, user_token):
+    def test_create_group(self, client, user_token, user):
         """
         Given group title,
+        And token user,
         When create group with given title,
         Then response contains group info,
-        And group is created.
+        And group is created,
+        And group contains token-user.
         """
         group_title = 'Sample group 1'
 
@@ -78,9 +80,12 @@ class TestGroupsViews(EventsFixtures, GroupsFixtures, UsersFixtures):
             **user_token
         )
 
+        group = Group.objects.filter(pk=1, title=group_title).first()
+
         assert response.status_code == 201
         assert response.data == {'id': 1, 'title': group_title}
-        assert Group.objects.filter(pk=1, title=group_title).exists()
+        assert group.users.filter(pk=user.pk).exists()
+
 
     def test_group_update(self, client, user_token, group):
         """

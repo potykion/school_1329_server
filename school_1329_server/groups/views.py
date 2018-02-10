@@ -85,3 +85,9 @@ class GroupsViewSet(SuccessDestroyMixin, ModelViewSet):
             return EventSerializer
         else:
             return GroupSerializer
+
+    def perform_create(self, serializer):
+        """
+        Add request user to group.
+        """
+        serializer.save(users=[self.request.user])
