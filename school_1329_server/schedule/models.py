@@ -24,10 +24,11 @@ class ScheduleSubject(models.Model):
 
 class ScheduleLesson(models.Model):
     start_time = models.TimeField()
+    end_time = models.TimeField(null=True)
     weekday = models.IntegerField(choices=Weekdays.choices)
 
     place = models.CharField(max_length=200)
 
     subject = models.OneToOneField(ScheduleSubject, models.CASCADE)
-    teacher = models.OneToOneField(User, models.CASCADE)
+    teacher = models.ForeignKey(User, models.CASCADE)
     groups = models.ManyToManyField(Group, blank=True)

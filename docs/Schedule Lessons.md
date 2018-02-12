@@ -19,6 +19,7 @@ Name | Description | Example
 Name | Description
 --- | ---
 **start_time** | lesson start time (hours and minutes)
+**end_time** | (optional) lesson end time (hours and minutes), if not provided them it equals to start time + lesson duration (45 minutes)
 **weekday** | lesson weekday (1 - monday, 2 - tuesday, etc.)
 **groups** | list of lesson groups
 **subject** | lesson subject
@@ -30,6 +31,7 @@ Name | Description
 --- | ---
 **id** | subject lesson id
 **start_time** | lesson start time (hours and minutes)
+**end_time** | lesson end time (hours and minutes)
 **weekday** | lesson weekday (1 - monday, 2 - tuesday, etc.)
 **groups** | list of lesson groups
 **subject** | lesson subject
@@ -58,6 +60,7 @@ curl -X POST \
     "id": 1,
     "place": "wkola",
     "start_time": "12:00",
+    "end_time": "12:45",
     "weekday": 1,
     "groups": [1],
     "subject": 1,
@@ -80,6 +83,7 @@ Name | Description | Example
 Name | Description
 --- | ---
 **start_time** | lesson start time (hours and minutes)
+**end_time** | (optional) lesson end time (hours and minutes), if not provided them it equals to start time + lesson duration (45 minutes)
 **weekday** | lesson weekday (1 - monday, 2 - tuesday, etc.)
 **groups** | list of lesson groups
 **subject** | lesson subject
@@ -91,6 +95,7 @@ Name | Description
 --- | ---
 **id** | subject lesson id
 **start_time** | lesson start time (hours and minutes)
+**end_time** | lesson end time (hours and minutes)
 **weekday** | lesson weekday (1 - monday, 2 - tuesday, etc.)
 **groups** | list of lesson groups
 **subject** | lesson subject
@@ -119,6 +124,7 @@ curl -X PUT \
     "id": 1,
     "place": "wkola2",
     "start_time": "13:00",
+    "end_time": "13:45",
     "weekday": 2,
     "groups": [1],
     "subject": 1,
@@ -178,6 +184,7 @@ Name | Description
 **teacher** | lesson teacher username
 **subject** | lesson subject title
 **start_time** | lesson start time
+**end_time** | lesson end time
 **place** | lesson place
 
 ### Example request
@@ -195,6 +202,7 @@ curl -X GET \
         {
             "id": 1,
             "start_time": "12:00",
+            "end_time": "12:45",
             "subject": "Русский",
             "teacher": "poty",
             "place": "wkola"

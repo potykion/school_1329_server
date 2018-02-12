@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from school_1329_server.schedule.models import ScheduleSubject, ScheduleLesson
+from school_1329_server.schedule.utils import compute_end_time
 
 
 class ScheduleSubjectSerializer(serializers.ModelSerializer):
@@ -15,12 +16,18 @@ class ScheduleLessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = ScheduleLesson
         fields = (
-            'id', 'start_time', 'weekday', 'place',
+            'id', 'start_time', 'end_time', 'weekday', 'place',
             'subject', 'teacher', 'groups'
         )
         extra_kwargs = {
-            'teacher': {'required': False}
+            'teacher': {'required': False},
+            'end_time': {'required': False}
         }
+
+    def validate(self, data):
+        # set end time if not present
+        data.setdefault('end_time', compute_end_time(data['start_time']))
+        return data
 
 
 class UserScheduleLessonsSerializer(serializers.ModelSerializer):
@@ -30,6 +37,6 @@ class UserScheduleLessonsSerializer(serializers.ModelSerializer):
     class Meta:
         model = ScheduleLesson
         fields = (
-            'id', 'start_time', 'weekday', 'place',
+            'id', 'start_time', 'end_time', 'weekday', 'place',
             'subject', 'teacher',
         )

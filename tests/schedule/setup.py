@@ -15,6 +15,7 @@ class ScheduleFixtures(GroupsFixtures):
             teacher=teacher,
             subject=subject,
             start_time='12:00',
+            end_time='12:45',
             weekday=Weekdays.Monday,
             place='wkola'
         )

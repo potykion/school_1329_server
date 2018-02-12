@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, time
 from typing import Tuple, Dict, Union
 
 from django.test.client import encode_multipart
@@ -17,6 +17,15 @@ def datetime_to_drf(datetime_: datetime) -> Union[str, datetime]:
         return f'{datetime_.date()}T{datetime_.time()}Z'
     else:
         return datetime_
+
+
+def format_time(time_: time) -> str:
+    """
+    Convert time to string with hours and minutes.
+    :param time_: Time.
+    :return: String with hours and minutes.
+    """
+    return f'{time_.hour}:{time_.minute}'
 
 
 def encode_data(data) -> Tuple[Dict, str]:

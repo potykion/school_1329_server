@@ -11,7 +11,7 @@ def generate_registration_code(length=8):
     :param length: Password length.
     :return: Password with given length.
     """
-    alphabet = string.ascii_letters + string.digits
+    alphabet = string.ascii_uppercase + string.digits
     return ''.join(random.choice(alphabet) for _ in range(length))
 
 

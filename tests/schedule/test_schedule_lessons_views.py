@@ -1,7 +1,8 @@
 from operator import attrgetter
 
-from school_1329_server.common.utils import encode_data
+from school_1329_server.common.utils import encode_data, format_time
 from school_1329_server.schedule.models import ScheduleLesson
+from school_1329_server.schedule.utils import compute_end_time
 from tests.schedule.setup import ScheduleFixtures
 from tests.users.setup import UsersFixtures
 
@@ -27,6 +28,7 @@ class TestScheduleItemsViews(ScheduleFixtures, UsersFixtures):
                 {
                     'id': 1,
                     'start_time': '12:00',
+                    'end_time': '12:45',
                     'subject': 'Русский',
                     'teacher': 'galina ivanovna',
                     'place': 'wkola'
@@ -59,7 +61,12 @@ class TestScheduleItemsViews(ScheduleFixtures, UsersFixtures):
 
         item = ScheduleLesson.objects.get()
         assert item.pk
-        assert response.data == {**schedule_item_data, 'teacher': teacher.username, 'id': item.pk}
+        assert response.data == {
+            **schedule_item_data,
+            'teacher': teacher.username,
+            'id': item.pk,
+            'end_time': format_time(compute_end_time(item.start_time))
+        }
 
     def test_update_schedule_item(
             self, client, teacher_token,
@@ -98,6 +105,8 @@ class TestScheduleItemsViews(ScheduleFixtures, UsersFixtures):
             'place': new_schedule_data['place'],
             'groups': new_schedule_data['groups'],
             'start_time': new_schedule_data['start_time'],
+            'end_time': format_time(compute_end_time(item.start_time)),
+
             'subject': new_schedule_data['subject'],
             'weekday': new_schedule_data['weekday']
         }
