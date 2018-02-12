@@ -14,3 +14,9 @@ ALLOWED_HOSTS = [
 DATABASES = {'default': dj_database_url.config()}
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'potykion@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
