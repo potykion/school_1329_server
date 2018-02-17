@@ -19,13 +19,23 @@ class EventsViewSet(SuccessDestroyMixin, ModelViewSet):
         serializer.save(created_by=self.request.user)
 
     @list_route()
-    def user_events(self, request, *args, **kwargs):
+    def user_entered_events(self, request, *args, **kwargs):
         """
-        Get user groups, render user groups events.
-        :return: User events.
+        List events where user participates.
+        :return: User-participated events.
         """
         user_groups = Group.objects.filter(users__in=[request.user])
         user_events = Event.objects.filter(participation_groups__in=user_groups)
+        serializer: EventSerializer = self.get_serializer(user_events, many=True)
+        return Response(serializer.data)
+
+    @list_route()
+    def user_created_events(self, request, *args, **kwargs):
+        """
+        List events which created by user.
+        :return: User-created events.
+        """
+        user_events = Event.objects.filter(created_by=request.user)
         serializer: EventSerializer = self.get_serializer(user_events, many=True)
         return Response(serializer.data)
 

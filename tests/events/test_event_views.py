@@ -1,6 +1,5 @@
 from datetime import timedelta
 
-from django.test.client import encode_multipart
 from django.utils import timezone
 
 from school_1329_server.common.utils import datetime_to_drf, encode_data
@@ -137,7 +136,7 @@ class TestEventsViews(EventsFixtures):
         assert response.data == {'success': True}
         assert not Event.objects.filter(pk=event.pk).exists()
 
-    def test_user_events(
+    def test_user_entered_events(
             self, client, user_token,
             event, user, group_with_user
     ):
@@ -146,7 +145,7 @@ class TestEventsViews(EventsFixtures):
         When fetch user events,
         Then response contains user events.
         """
-        response = client.get('/api/events/user_events', **user_token)
+        response = client.get('/api/events/user_entered_events', **user_token)
 
         assert len(response.data) == 1
         assert response.data[0] == {
@@ -158,6 +157,32 @@ class TestEventsViews(EventsFixtures):
 
             'created_by': user.username,
             'participation_groups': [group_with_user.pk],
+
+            'start_date': datetime_to_drf(event.start_date),
+            'end_date': datetime_to_drf(event.end_date)
+        }
+
+    def test_user_created_events(
+            self, client, user_token,
+            event, user
+    ):
+        """
+        Given user and event,
+        When fetch events created by user,
+        Then response contains created by user events.
+        """
+        response = client.get('/api/events/user_created_events', **user_token)
+
+        assert len(response.data)
+        assert response.data[0] == {
+            'id': 1,
+
+            'title': event.title,
+            'place': event.place,
+            'description': event.description,
+
+            'created_by': user.username,
+            'participation_groups': list(event.participation_groups.values_list('pk', flat=True)),
 
             'start_date': datetime_to_drf(event.start_date),
             'end_date': datetime_to_drf(event.end_date)
