@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'school_1329_server.groups',
     'school_1329_server.events',
     'school_1329_server.schedule',
+    'school_1329_server.notifications'
 
 ]
 

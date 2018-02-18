@@ -1,7 +1,7 @@
 from django.test.client import encode_multipart
 from rest_framework.response import Response
 
-from school_1329_server.common.utils import datetime_to_drf
+from school_1329_server.common.utils import datetime_to_drf, encode_data
 from school_1329_server.groups.models import Group
 from tests.events.setup import EventsFixtures
 from tests.groups.setup import GroupsFixtures
@@ -86,7 +86,6 @@ class TestGroupsViews(EventsFixtures, GroupsFixtures, UsersFixtures):
         assert response.data == {'id': 1, 'title': group_title}
         assert group.users.filter(pk=user.pk).exists()
 
-
     def test_group_update(self, client, user_token, group):
         """
         Given group,
@@ -97,9 +96,7 @@ class TestGroupsViews(EventsFixtures, GroupsFixtures, UsersFixtures):
         """
         group_title = 'Sample group 2'
 
-        boundary_string = 'BoUnDaRyStRiNg'
-        encoded_data = encode_multipart(boundary_string, {'title': group_title})
-        content_type = f'multipart/form-data; boundary={boundary_string}'
+        encoded_data, content_type = encode_data({'title': group_title})
 
         response: Response = client.put(
             f'/api/groups/{group.pk}',

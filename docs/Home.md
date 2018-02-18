@@ -85,3 +85,13 @@ Methods for schedule lessons CRUD and schedule listing.
 - [PUT /api/schedule_lessons/{id}](https://github.com/potykion/school_1329_server/wiki/Schedule-Lessons#put-apischedule_lessonsid) - Update subject with {id}.
 - [DELETE /api/schedule_lessons/{id}](https://github.com/potykion/school_1329_server/wiki/Schedule-Lessons#delete-apischedule_lessonsid) - Delete subject lesson with {id}.
 - [GET /api/schedule_lessons/user_schedule](https://github.com/potykion/school_1329_server/wiki/Schedule-Lessons#get-apischedule_lessonsuser_schedule) - List user schedule.
+
+
+## Notifications
+
+Methods for notifications CRUD.
+
+- [POST /api/notifications](https://github.com/potykion/school_1329_server/wiki/Notifications#post-apinotifications) - Create new notification.
+- [PUT /api/notifications/{id}](https://github.com/potykion/school_1329_server/wiki/Notifications#put-apinotificationsid) - Update notification with {id}.
+- [GET /api/notifications/list_sent_notifications](https://github.com/potykion/school_1329_server/wiki/Notifications#get-apinotificationslist_sent_notifications) - List notification that already sent.
+- [GET /api/notifications/list_created_notifications](https://github.com/potykion/school_1329_server/wiki/Notifications#get-apinotificationslist_created_notitifications) - List notifications which created by user.

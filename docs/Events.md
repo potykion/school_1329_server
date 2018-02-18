@@ -1,6 +1,6 @@
 # Info
 
-Methods for event comments CRUD.
+Methods for events CRUD.
 
 # Methods
 
@@ -236,7 +236,7 @@ Name | Description
 
 ```
 curl -X GET \
-  https://school-1329.herokuapp.com/api/events/user_events \
+  https://school-1329.herokuapp.com/api/events/user_entered_events \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
 ```
 
@@ -286,7 +286,7 @@ Name | Description
 
 ```
 curl -X GET \
-  https://school-1329.herokuapp.com/api/events/user_events \
+  https://school-1329.herokuapp.com/api/events/user_created_events \
   -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
 ```
 
