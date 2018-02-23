@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_extensions',
+    'fcm_django',
 
     'school_1329_server.users',
     'school_1329_server.common',
@@ -49,6 +50,10 @@ INSTALLED_APPS = [
     'school_1329_server.notifications'
 
 ]
+
+FCM_DJANGO_SETTINGS = {
+    "FCM_SERVER_KEY": "AAAA1ypzTLY:APA91bFe-ANoX2qY9L0_xO9dqIRd839T6V62QpWOwMSzLsuHTWSxszHu63tu9MNTzY_4tE_K-FUeVOxs9TnOyahVe8VizYT6_LQQ2LRtuPkRlIfPV0-xkifSswg0gFYGS9Uaz19iu1B9",
+}
 
 AUTH_USER_MODEL = 'users.User'
 
