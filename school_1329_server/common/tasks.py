@@ -16,7 +16,7 @@ def send_email(subject, body, to):
     if not isinstance(to, list):
         to = [to]
 
-    email = EmailMessage(subject, body, to)
+    email = EmailMessage(subject, body, to=to)
     return email.send()
 
 
