@@ -9,3 +9,4 @@ DATABASES = {
         default='sqlite:///db.sqlite3'
     )
 }
+

@@ -33,11 +33,9 @@ class NotificationViewSet(CreateModelMixin, UpdateModelMixin, GenericViewSet):
         serializer = self.get_serializer(notifications, many=True)
         return Response(serializer.data)
 
-
     def perform_create(self, serializer):
-        # todo create notification task with eta = iter.get_next(datetime)
-        # https://pypi.python.org/pypi/croniter/
-        return serializer.save(created_by=self.request.user)
+        notification = serializer.save(created_by=self.request.user)
+        notification.schedule()
 
     def perform_update(self, serializer):
         serializer.save(created_by=self.request.user)

@@ -31,3 +31,13 @@ class UsersFixtures:
     def teacher_token(self, teacher):
         token = Token.objects.create(user=teacher)
         return {'HTTP_AUTHORIZATION': f'Token {token.key}'}
+
+    @pytest.fixture()
+    def users_batch(self):
+        return [
+            User.objects.create_user(username='user_1', password='oppa', level=UserLevel.student),
+            User.objects.create_user(username='user_2', password='oppa', level=UserLevel.student),
+            User.objects.create_user(username='user_3', password='oppa', level=UserLevel.student),
+            User.objects.create_user(username='user_4', password='oppa', level=UserLevel.student),
+            User.objects.create_user(username='user_5', password='oppa', level=UserLevel.student),
+        ]
