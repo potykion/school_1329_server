@@ -2,6 +2,5 @@ language: python
 cache: pip
 python:
   - 3.6
-  - nightly
 script:
   - pytest
