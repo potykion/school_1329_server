@@ -17,9 +17,9 @@ def send_email(subject, body, to):
         to = [to]
 
     email = EmailMessage(subject, body, to)
-    email.send()
+    return email.send()
 
 
 @app.task()
 def send_push(fcm_token, title, body):
-    fcm_send_message(fcm_token, title, body)
+    return fcm_send_message(fcm_token, title, body)
