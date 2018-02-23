@@ -23,8 +23,8 @@ class Notification(models.Model):
 
     def fetch_target_users(self) -> List[User]:
         notification_users_ids = self.groups.all().values_list('users')
-        return User.objects.filter(pk__in=notification_users_ids)
-        
+        return User.objects.filter(pk__in=notification_users_ids, fcm_token__isnull=False)
+
     def schedule(self):
         """
         Create notification task with eta = next cron time.

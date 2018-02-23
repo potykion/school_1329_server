@@ -107,11 +107,12 @@ class TestUsersViews(UsersFixtures):
             'code': registration_code.code,
             'level': registration_code.level,
             'username': username,
-            'password': 'sam'
+            'password': 'sam',
+            'fcm_token': 'oppa'
         })
 
         assert 'token' in response.data
-        assert User.objects.filter(username=username, level=registration_code.level).exists()
+        assert User.objects.filter(username=username, level=registration_code.level, fcm_token='oppa').exists()
 
     def test_user_creation_with_expired_password(self, client: Client, expired_registration_code):
         """
@@ -139,8 +140,10 @@ class TestUsersViews(UsersFixtures):
         """
         response = client.post(
             '/api/users/login',
-            {'username': user.username, 'password': user.password}
+            {'username': user.username, 'password': user.password, 'fcm_token': 'oppa'}
         )
 
         token = Token.objects.get(user=user)
+        user = User.objects.get(pk=user.pk)
+        assert user.fcm_token == 'oppa'
         assert response.data == {'token': token.key}

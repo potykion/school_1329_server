@@ -1,6 +1,7 @@
 from rest_framework.decorators import list_route
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from rest_framework_csv.renderers import CSVRenderer
 
 from school_1329_server.common.mixins import SuccessDestroyMixin
 from school_1329_server.events.models import Event, EventComment
@@ -37,6 +38,12 @@ class EventsViewSet(SuccessDestroyMixin, ModelViewSet):
         """
         user_events = Event.objects.filter(created_by=request.user)
         serializer: EventSerializer = self.get_serializer(user_events, many=True)
+        return Response(serializer.data)
+
+    @list_route(renderer_classes=(CSVRenderer,))
+    def csv(self, request, *args, **kwargs):
+        events = self.get_queryset()
+        serializer = self.get_serializer(events, many=True)
         return Response(serializer.data)
 
 

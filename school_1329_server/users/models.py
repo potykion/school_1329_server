@@ -19,6 +19,8 @@ class User(AbstractUser):
 
     level = models.IntegerField(choices=UserLevel.choices, default=0)
 
+    fcm_token = models.CharField(max_length=200, null=True)
+
 
 class RegistrationCode(models.Model):
     """

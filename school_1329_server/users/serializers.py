@@ -51,10 +51,11 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'level', 'password', 'code')
+        fields = ('username', 'level', 'password', 'code', 'fcm_token')
         extra_kwargs = {
             'password': {'write_only': True},
-            'code': {'write_only': True}
+            'code': {'write_only': True},
+            'fcm_token': {'write_only': True}
         }
 
     def validate(self, data):

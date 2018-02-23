@@ -187,3 +187,21 @@ class TestEventsViews(EventsFixtures):
             'start_date': datetime_to_drf(event.start_date),
             'end_date': datetime_to_drf(event.end_date)
         }
+
+    def test_events_csv_view(self, client, user_token, event):
+        """
+        Given events,
+        When fetch events in CSV format,
+        Then response contains events in CSV format.
+        """
+        response = client.get('/api/events/csv', **user_token)
+
+        event_groups_str = ','.join(map(str, event.participation_groups.values_list('id', flat=True)))
+        event_end_date = datetime_to_drf(event.end_date) or ''
+        event_start_date = datetime_to_drf(event.start_date) or ''
+
+        response_content = response.content.decode('utf-8')
+        assert response_content == (
+            'created_by,description,end_date,id,participation_groups.0,place,start_date,title\r\n'
+            f'{event.created_by.username},{event.description},{event_end_date},{event.id},{event_groups_str},{event.place},{event_start_date},{event.title}\r\n'
+        )
