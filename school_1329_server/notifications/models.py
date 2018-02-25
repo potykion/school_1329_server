@@ -21,6 +21,12 @@ class Notification(models.Model):
     # crontab mask: https://crontab.guru/
     frequency = models.CharField(max_length=200, default='* * * * *')
 
+    until = models.DateTimeField(null=True)
+
+    @property
+    def deadline_came(self):
+        return self.until and self.until < datetime.now()
+
     def fetch_target_users(self) -> List[User]:
         notification_users_ids = self.groups.all().values_list('users')
         return User.objects.filter(pk__in=notification_users_ids, fcm_token__isnull=False)

@@ -307,3 +307,40 @@ curl -X GET \
     }
 ]
 ```
+
+## GET /api/events/csv
+
+List all of the events in CSV format.
+
+### Request headers
+
+Name | Description | Example
+--- | --- | ---
+**Authorization** | token received on register or login | Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97
+
+### Response fields
+
+Name | Description
+--- | ---
+**id** | event id
+**title** | event title
+**place** | event place
+**description** | event description
+**created_by** | username of event creator
+**participation_groups** | list of group ids that participate in the event
+**start_date** | event start date in UTC
+**end_date** | event end date in UTC
+
+### Example request
+
+```
+curl -X GET \
+  https://school-1329.herokuapp.com/api/events/csv \
+  -H 'authorization: Token b140fc2e09e618dd7f5d2cad6ccdc587c80e8a97'
+```
+
+### Example response
+```
+created_by,description,end_date,id,participation_groups.0,place,start_date,title
+poty,,,1,1,School,2018-03-08T12:00Z,Sample event
+```

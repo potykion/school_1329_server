@@ -9,7 +9,7 @@ class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
         fields = (
-            'id', 'text', 'send_once', 'groups', 'frequency', 'created_by'
+            'id', 'text', 'send_once', 'groups', 'frequency', 'created_by', 'until'
         )
         extra_kwargs = {
             'created_by': {'write_only': True, 'required': False},

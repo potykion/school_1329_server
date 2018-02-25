@@ -22,6 +22,7 @@ Name | Description
 **frequency** | Notification frequency in crontab-style (https://crontab.guru/)
 **send_once** | If true notification is sending only once
 **groups** | Notification target-groups
+**until** | (optional) Datetime until notifications are sending in UTC.
 
 ### Response fields
 
@@ -33,6 +34,8 @@ Name | Description
 **send_once** | If true notification is sending only once
 **groups** | Notification target-groups
 **created_by** | Notification creator username
+**until** | Datetime until notifications are sending in UTC.
+
 
 ### Example request
 
@@ -80,6 +83,7 @@ Name | Description
 **frequency** | Notification frequency in crontab-style (https://crontab.guru/)
 **send_once** | If true notification is sending only once
 **groups** | Notification target-groups
+**until** | (optional) Datetime until notifications are sending in UTC.
 
 ### Response fields
 
@@ -91,6 +95,7 @@ Name | Description
 **send_once** | If true notification is sending only once
 **groups** | Notification target-groups
 **created_by** | Notification creator username
+**until** | Datetime until notifications are sending in UTC.
 
 
 ### Example request
@@ -140,7 +145,7 @@ Name | Description
 **send_once** | If true notification is sending only once
 **groups** | Notification target-groups
 **created_by** | Notification creator username
-
+**until** | Datetime until notifications are sending in UTC.
 
 ### Example request
 
@@ -184,6 +189,7 @@ Name | Description
 **send_once** | If true notification is sending only once
 **groups** | Notification target-groups
 **created_by** | Notification creator username
+**until** | Datetime until notifications are sending in UTC.
 
 
 ### Example request

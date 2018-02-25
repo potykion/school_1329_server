@@ -56,7 +56,7 @@ Methods for events CRUD.
 - [DELETE /api/events/{id}](https://github.com/potykion/school_1329_server/wiki/Events#delete-apieventsid) - Delete event with {id}.
 - [GET /api/events/user_entered_events](https://github.com/potykion/school_1329_server/wiki/Events#get-apieventsuser_entered_events) - List events where user participates.
 - [GET /api/events/user_created_events](https://github.com/potykion/school_1329_server/wiki/Events#get-apieventsuser_created_events) - List events which created by user.
-
+- [GET /api/events/csv](https://github.com/potykion/school_1329_server/wiki/Events#get-apieventscsv) - List all of the events in CSV format.
 
 ## Event Comments
 

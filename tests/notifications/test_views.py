@@ -1,4 +1,4 @@
-from school_1329_server.common.utils import encode_data
+from school_1329_server.common.utils import encode_data, datetime_to_drf
 from school_1329_server.notifications.models import Notification
 from tests.notifications.setup import NotificationsFixtures
 
@@ -24,7 +24,8 @@ class TestNotificationsViews(NotificationsFixtures):
             'created_by': 'potykion',
             'frequency': '* * * * *',
             'groups': [1],
-            'send_once': True
+            'send_once': True,
+            'until': None
         }
 
     def test_list_created_notifications(
@@ -49,7 +50,8 @@ class TestNotificationsViews(NotificationsFixtures):
             'send_once': True,
             'groups': [1],
             'frequency': '* * * * *',
-            'created_by': 'potykion'
+            'created_by': 'potykion',
+            'until': None
         }
 
     def test_create_notification(
@@ -76,6 +78,7 @@ class TestNotificationsViews(NotificationsFixtures):
             'send_once': notification_data['send_once'],
             'groups': notification_data['groups'],
             'created_by': 'potykion',
+            'until': datetime_to_drf(notification.until)
         }
 
     def test_alter_notification(
@@ -107,4 +110,5 @@ class TestNotificationsViews(NotificationsFixtures):
             'send_once': notification_data['send_once'],
             'groups': notification_data['groups'],
             'created_by': 'potykion',
+            'until': datetime_to_drf(notification.until)
         }

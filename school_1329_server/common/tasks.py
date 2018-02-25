@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 import celery
 from django.conf import settings
@@ -41,5 +42,5 @@ def send_notifications(notification_pk):
     notification.sent = True
     notification.save()
 
-    if not notification.send_once:
+    if not notification.send_once and not notification.deadline_came:
         notification.schedule()

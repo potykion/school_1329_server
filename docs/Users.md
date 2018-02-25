@@ -79,6 +79,7 @@ Name | Description
 **code** | registration code value
 **username** | user name
 **password** | user password
+**fcm_token** | FCM token
 
 ### Response fields 
 
@@ -112,6 +113,7 @@ Name | Description
 --- | ---
 **username** | user name
 **password** | user password
+**fcm_token** | FCM token
 
 ### Response fields
 

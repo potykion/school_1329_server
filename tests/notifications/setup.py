@@ -1,4 +1,7 @@
+from datetime import timedelta
+
 import pytest
+from django.utils import timezone
 
 from school_1329_server.notifications.models import Notification
 from tests.groups.setup import GroupsFixtures
@@ -40,4 +43,5 @@ class NotificationsFixtures(GroupsFixtures):
             'frequency': '* * * * *',
             'send_once': True,
             'groups': [group_with_user.pk],
+            'until': timezone.now() + timedelta(1)
         }
