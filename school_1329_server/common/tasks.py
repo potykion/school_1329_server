@@ -35,7 +35,7 @@ def send_notifications(notification_pk):
 
     notification = Notification.objects.get(pk=notification_pk)
 
-    user_tokens = notification.fetch_target_users().values_list('fcm_token')
+    user_tokens = notification.fetch_target_users().values_list('fcm_token', flat=True)
     for token in user_tokens:
         send_push(token, 'Sch1329', notification.text)
 
