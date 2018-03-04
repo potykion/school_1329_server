@@ -44,7 +44,9 @@ class EventsViewSet(SuccessDestroyMixin, ModelViewSet):
     def csv(self, request, *args, **kwargs):
         events = self.get_queryset()
         serializer = self.get_serializer(events, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, headers={
+            'Content-Disposition': 'attachment; filename=events.csv'
+        })
 
 
 class EventCommentsViewSet(SuccessDestroyMixin, ModelViewSet):

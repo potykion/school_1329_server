@@ -10,18 +10,25 @@ from school_1329_server.users.models import User
 
 
 class Notification(models.Model):
-    text = models.CharField(max_length=200)
+    text = models.CharField(max_length=200, verbose_name='Текст')
 
-    created_by = models.ForeignKey(User, models.CASCADE)
-    groups = models.ManyToManyField(Group)
+    created_by = models.ForeignKey(User, models.CASCADE, verbose_name='Создано')
+    groups = models.ManyToManyField(Group, verbose_name='Группы')
 
-    sent = models.BooleanField(default=False)
-    send_once = models.BooleanField(default=True)
+    sent = models.BooleanField(default=False, verbose_name='Отправлено')
+    send_once = models.BooleanField(default=True, verbose_name='Отправить один раз')
 
     # crontab mask: https://crontab.guru/
-    frequency = models.CharField(max_length=200, default='* * * * *')
+    frequency = models.CharField(
+        max_length=200, default='* * * * *', verbose_name='Частота',
+        help_text='Частота в формате crontab (https://ru.wikipedia.org/wiki/Cron#crontab)'
+    )
 
-    until = models.DateTimeField(null=True)
+    until = models.DateTimeField(null=True, verbose_name='Срок отправки')
+
+    class Meta:
+        verbose_name_plural = 'Уведомления'
+        verbose_name = 'Уведомление'
 
     @property
     def deadline_came(self):
@@ -40,3 +47,6 @@ class Notification(models.Model):
         run_datetime = croniter_.get_next(datetime)
         send_notifications.apply_async((self.pk,), eta=run_datetime)
         return run_datetime
+
+    def __str__(self):
+        return f'{self.text}'
