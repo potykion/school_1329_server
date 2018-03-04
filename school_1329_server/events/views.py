@@ -48,6 +48,14 @@ class EventsViewSet(SuccessDestroyMixin, ModelViewSet):
             'Content-Disposition': 'attachment; filename=events.csv'
         })
 
+    def get_renderer_context(self):
+        context = super(EventsViewSet, self).get_renderer_context()
+
+        if self.action == 'csv':
+            context['encoding'] = 'utf-8-sig'
+
+        return context
+
 
 class EventCommentsViewSet(SuccessDestroyMixin, ModelViewSet):
     serializer_class = EventCommentSerializer

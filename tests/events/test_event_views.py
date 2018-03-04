@@ -196,12 +196,12 @@ class TestEventsViews(EventsFixtures):
         """
         response = client.get('/api/events/csv', **user_token)
 
-        event_groups_str = ','.join(map(str, event.participation_groups.values_list('id', flat=True)))
-        event_end_date = datetime_to_drf(event.end_date) or ''
         event_start_date = datetime_to_drf(event.start_date) or ''
 
-        response_content = response.content.decode('utf-8')
-        assert response_content == (
-            'created_by,description,end_date,id,participation_groups.0,place,start_date,title\r\n'
-            f'{event.created_by.username},{event.description},{event_end_date},{event.id},{event_groups_str},{event.place},{event_start_date},{event.title}\r\n'
-        )
+        response_content = response.content.decode('utf-8-sig')
+
+        expected = f'''created_by,description,end_date,id,participation_groups.0,place,start_date,title\r
+﻿potykion,Чисто собраться,,1,1,Школка,{event_start_date},Линейка\r
+'''
+
+        assert response_content.strip() == expected.strip()
