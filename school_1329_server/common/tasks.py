@@ -26,7 +26,7 @@ def send_email(subject, body, to):
 
 @app.task()
 def send_push(fcm_token, title, body):
-    return fcm_send_message(fcm_token, title, body)
+    return fcm_send_message(fcm_token, title, body, badge='Label', tag='Label')
 
 
 @app.task()
