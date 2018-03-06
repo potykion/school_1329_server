@@ -14,8 +14,9 @@ from school_1329_server.groups.models import Group
 class UserAdmin(admin.ModelAdmin):
     exclude = (
         'last_login', 'is_superuser', 'groups', 'is_active', 'email',
-        'first_name', 'last_name', 'fcm_token', 'is_staff', 'date_joined',
-        'user_permissions', 'password'
+        'first_name', 'last_name', 'is_staff', 'date_joined',
+        'user_permissions', 'password',
+        # 'fcm_token',
     )
 
 
