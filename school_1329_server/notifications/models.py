@@ -10,7 +10,7 @@ from school_1329_server.users.models import User
 
 
 class Notification(models.Model):
-    text = models.CharField(max_length=200, verbose_name='Текст')
+    text = models.TextField(verbose_name='Текст')
 
     created_by = models.ForeignKey(User, models.CASCADE, verbose_name='Создано')
     groups = models.ManyToManyField(Group, verbose_name='Группы')
