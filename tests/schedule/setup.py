@@ -1,6 +1,6 @@
 import pytest
 
-from school_1329_server.schedule.models import ScheduleSubject, ScheduleLesson, Weekdays
+from school_1329_server.schedule.models import ScheduleSubject, ScheduleLesson, Weekdays, ScheduleTeacher
 from tests.groups.setup import GroupsFixtures
 
 
@@ -12,7 +12,7 @@ class ScheduleFixtures(GroupsFixtures):
     @pytest.fixture()
     def schedule_item(self, teacher, subject, group_with_user):
         item = ScheduleLesson.objects.create(
-            teacher=teacher,
+            teacher=ScheduleTeacher.objects.create(name=teacher.username),
             subject=subject,
             start_time='12:00',
             end_time='12:45',

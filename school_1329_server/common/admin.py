@@ -5,7 +5,7 @@ from rest_framework.authtoken.models import Token
 
 from school_1329_server.events.models import Event, EventComment
 from school_1329_server.notifications.models import Notification
-from school_1329_server.schedule.models import ScheduleSubject, ScheduleLesson
+from school_1329_server.schedule.models import ScheduleSubject, ScheduleLesson, ScheduleTeacher
 from school_1329_server.users.models import User, RegistrationCode
 from school_1329_server.groups.models import Group
 
@@ -16,7 +16,7 @@ class UserAdmin(admin.ModelAdmin):
         'last_login', 'is_superuser', 'groups', 'is_active', 'email',
         'first_name', 'last_name', 'is_staff', 'date_joined',
         'user_permissions', 'password',
-        # 'fcm_token',
+        'fcm_token',
     )
 
 
@@ -26,7 +26,7 @@ admin.site.unregister([
 admin.site.register([
     Group, RegistrationCode,
     Event, EventComment,
-    ScheduleSubject, ScheduleLesson,
+    ScheduleSubject, ScheduleLesson, ScheduleTeacher,
     Notification
 ])
 admin.site.index_template = 'general/custom_admin.html'
