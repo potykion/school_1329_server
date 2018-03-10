@@ -7,7 +7,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from school_1329_server.common.mixins import SuccessDestroyMixin
 from school_1329_server.groups.models import Group
-from school_1329_server.schedule.models import ScheduleSubject, ScheduleLesson, Weekdays
+from school_1329_server.schedule.models import ScheduleSubject, ScheduleLesson, Weekdays, ScheduleTeacher
 from school_1329_server.schedule.serializers import ScheduleSubjectSerializer, UserScheduleLessonsSerializer, \
     ScheduleLessonSerializer
 
@@ -44,10 +44,12 @@ class ScheduleLessonViewSet(SuccessDestroyMixin, ModelViewSet):
         return schedule
 
     def perform_create(self, serializer):
-        serializer.save(teacher=self.request.user)
+        teacher, _ = ScheduleTeacher.objects.get_or_create(name=self.request.user.username)
+        serializer.save(teacher=teacher)
 
     def perform_update(self, serializer):
-        serializer.save(teacher=self.request.user)
+        teacher, _ = ScheduleTeacher.objects.get_or_create(name=self.request.user.username)
+        serializer.save(teacher=teacher)
 
     def get_serializer_class(self):
         if self.action == 'user_schedule':
