@@ -23,7 +23,7 @@ class ScheduleLessonViewSet(SuccessDestroyMixin, ModelViewSet):
     @list_route()
     def user_schedule(self, request, *args, **kwargs):
         user_groups = Group.objects.filter(users__in=[request.user])
-        user_lessons = ScheduleLesson.objects.filter(groups__in=user_groups)
+        user_lessons = ScheduleLesson.objects.filter(groups__in=user_groups).order_by('weekday')
 
         serializer = self.get_serializer(user_lessons, many=True)
         serialized_lessons = serializer.data
@@ -39,7 +39,7 @@ class ScheduleLessonViewSet(SuccessDestroyMixin, ModelViewSet):
 
         schedule = dict.fromkeys(map(itemgetter(0), Weekdays.choices), [])
         for weekday, items in weekday_lessons:
-            schedule[weekday] = list(items)
+            schedule[weekday] = sorted(items, key=lambda lesson: lesson['start_time'])
 
         return schedule
 

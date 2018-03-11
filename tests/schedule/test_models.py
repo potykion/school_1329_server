@@ -8,6 +8,7 @@ from school_1329_server.schedule.models import ScheduleLesson, ScheduleTeacher, 
 
 
 class TestScheduleLessonManager:
+
     @pytest.mark.django_db
     def test_create_from_json(self):
         """
@@ -16,7 +17,6 @@ class TestScheduleLessonManager:
         Then lessons created along with groups, teachers and subjects.
         """
         lessons_json = os.path.join(STATIC_ROOT, 'schedule.json')
-
         ScheduleLesson.objects.create_from_json(lessons_json)
 
         assert ScheduleLesson.objects.count() == 28

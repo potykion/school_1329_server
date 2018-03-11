@@ -1,0 +1,192 @@
+{
+  "1": [
+    {
+      "start_time": "08:30",
+      "end_time": "09:15",
+      "subject": "Литературное чтение",
+      "place": "102",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "09:30",
+      "end_time": "10:15",
+      "subject": "Физическая культура",
+      "place": "",
+      "teacher": "Тишин А.Н."
+    },
+    {
+      "start_time": "10:30",
+      "end_time": "11:15",
+      "subject": "Русский язык",
+      "place": "102",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "11:35",
+      "end_time": "12:20",
+      "subject": "Математика",
+      "place": "102",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "12:40",
+      "end_time": "13:25",
+      "subject": "Я - школьник",
+      "place": "102",
+      "teacher": "Сизова М.В."
+    }
+  ],
+  "2": [
+    {
+      "start_time": "08:30",
+      "end_time": "09:15",
+      "subject": "Литературное чтение",
+      "place": "102",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "09:30",
+      "end_time": "10:15",
+      "subject": "Русский язык",
+      "place": "102",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "10:30",
+      "end_time": "11:15",
+      "subject": "Технология",
+      "place": "102",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "11:35",
+      "end_time": "12:20",
+      "subject": "Математика",
+      "place": "102",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "12:40",
+      "end_time": "13:25",
+      "subject": "Мои проекы",
+      "place": "",
+      "teacher": "Емелина Е.Ю."
+    }
+  ],
+  "3": [
+    {
+      "start_time": "08:30",
+      "end_time": "09:15",
+      "subject": "Физическая культура",
+      "place": "",
+      "teacher": "Тишин А.Н."
+    },
+    {
+      "start_time": "09:30",
+      "end_time": "10:15",
+      "subject": "Русский язык",
+      "place": "",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "10:30",
+      "end_time": "11:15",
+      "subject": "Изобразительное искусство",
+      "place": "102",
+      "teacher": "Анисимова Т.С."
+    },
+    {
+      "start_time": "11:35",
+      "end_time": "12:20",
+      "subject": "Математика",
+      "place": "102",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "12:40",
+      "end_time": "13:25",
+      "subject": "Школа развития речи",
+      "place": "102",
+      "teacher": "Емелина Е.Ю."
+    }
+  ],
+  "4": [
+    {
+      "start_time": "08:30",
+      "end_time": "09:15",
+      "subject": "Математика",
+      "place": "",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "09:30",
+      "end_time": "10:15",
+      "subject": "Литературное чтение",
+      "place": "",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "10:30",
+      "end_time": "11:15",
+      "subject": "Музыка",
+      "place": "",
+      "teacher": "Ковалева М.И."
+    },
+    {
+      "start_time": "11:35",
+      "end_time": "12:20",
+      "subject": "Окружающий мир",
+      "place": "",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "12:40",
+      "end_time": "13:25",
+      "subject": "Первые конструкции",
+      "place": "214",
+      "teacher": "Шерстюгина Н.Б."
+    }
+  ],
+  "5": [
+    {
+      "start_time": "08:30",
+      "end_time": "09:15",
+      "subject": "Окружающий мир",
+      "place": "",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "09:30",
+      "end_time": "10:15",
+      "subject": "Русский язык",
+      "place": "102",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "10:30",
+      "end_time": "11:15",
+      "subject": "Физическая культура",
+      "place": "",
+      "teacher": "Тишин А.Н."
+    },
+    {
+      "start_time": "11:35",
+      "end_time": "12:20",
+      "subject": "Литературное чтение",
+      "place": "102",
+      "teacher": "Емелина Е.Ю."
+    },
+    {
+      "start_time": "12:40",
+      "end_time": "13:25",
+      "subject": "Интеллект клуб",
+      "place": "102",
+      "teacher": "Емелина Е.Ю."
+    }
+  ],
+  "6": [
+  ],
+  "7": [
+  ]
+}
+

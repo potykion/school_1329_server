@@ -1,5 +1,7 @@
+import os
 import pytest
 
+from config.settings.common import STATIC_ROOT
 from school_1329_server.schedule.models import ScheduleSubject, ScheduleLesson, Weekdays, ScheduleTeacher
 from tests.groups.setup import GroupsFixtures
 
@@ -11,8 +13,9 @@ class ScheduleFixtures(GroupsFixtures):
 
     @pytest.fixture()
     def schedule_item(self, teacher, subject, group_with_user):
+        teacher = ScheduleTeacher.objects.create(name=teacher.username)
         item = ScheduleLesson.objects.create(
-            teacher=ScheduleTeacher.objects.create(name=teacher.username),
+            teacher=teacher,
             subject=subject,
             start_time='12:00',
             end_time='12:45',
@@ -32,3 +35,9 @@ class ScheduleFixtures(GroupsFixtures):
             'start_time': '12:00',
             'weekday': 1
         }
+
+    @pytest.fixture()
+    def week_schedule(self):
+        lessons_json = os.path.join(STATIC_ROOT, 'schedule.json')
+        ScheduleLesson.objects.create_from_json(lessons_json)
+        return ScheduleLesson.objects.all()
