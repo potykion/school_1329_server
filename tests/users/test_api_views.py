@@ -146,4 +146,4 @@ class TestUsersViews(UsersFixtures):
         token = Token.objects.get(user=user)
         user = User.objects.get(pk=user.pk)
         assert user.fcm_token == 'oppa'
-        assert response.data == {'token': token.key}
+        assert response.data == {'token': token.key, 'level': user.level}

@@ -75,7 +75,10 @@ class UsersViewSet(GenericViewSet):
         """
         token, _ = Token.objects.get_or_create(user=request.user)
 
-        return Response({'token': token.key}, status=200)
+        return Response({
+            'token': token.key,
+            'level': request.user.level
+        }, status=200)
 
     def get_serializer_class(self):
         """
