@@ -9,7 +9,7 @@ from school_1329_server.notifications.serializers import NotificationSerializer
 
 
 class NotificationViewSet(CreateModelMixin, UpdateModelMixin, GenericViewSet):
-    queryset = Notification.objects.all()
+    queryset = Notification.objects.order_by('created')
     serializer_class = NotificationSerializer
 
     @list_route()

@@ -1,8 +1,8 @@
 from datetime import datetime
+from typing import List
 
 from croniter import croniter
 from django.db import models
-from typing import List
 
 from school_1329_server.common.tasks import send_notifications
 from school_1329_server.groups.models import Group
@@ -25,6 +25,7 @@ class Notification(models.Model):
     )
 
     until = models.DateTimeField(null=True, verbose_name='Срок отправки')
+    created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = 'Уведомления'
