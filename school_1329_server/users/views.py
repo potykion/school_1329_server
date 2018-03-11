@@ -58,7 +58,10 @@ class UsersViewSet(GenericViewSet):
         user = serializer.save()
         token = Token.objects.create(user=user)
 
-        return Response({'token': token.key}, status=200)
+        return Response({
+            'token': token.key,
+            'level': user.level
+        }, status=200)
 
     @list_route(
         methods=['post'],

@@ -111,6 +111,7 @@ class TestUsersViews(UsersFixtures):
         })
 
         assert 'token' in response.data
+        assert response.data['level'] == registration_code.level
         assert User.objects.filter(username=username, level=registration_code.level, fcm_token='oppa').exists()
 
     def test_user_creation_with_expired_password(self, client: Client, expired_registration_code):
