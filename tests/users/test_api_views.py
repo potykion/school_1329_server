@@ -105,7 +105,6 @@ class TestUsersViews(UsersFixtures):
 
         response = client.post('/api/users/register', {
             'code': registration_code.code,
-            'level': registration_code.level,
             'username': username,
             'password': 'sam',
             'fcm_token': 'oppa'

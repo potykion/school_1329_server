@@ -28,6 +28,9 @@ class ValidateRegistrationCodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = RegistrationCode
         fields = ('code', 'level')
+        extra_kwargs = {
+            'level': {'required': False}
+        }
 
     def validate(self, data):
         """
@@ -53,6 +56,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'level', 'password', 'code', 'fcm_token')
         extra_kwargs = {
+            'level': {'required': False},
             'password': {'write_only': True},
             'code': {'write_only': True},
             'fcm_token': {'write_only': True}
@@ -67,5 +71,7 @@ class UserSerializer(serializers.ModelSerializer):
         code_serializer = ValidateRegistrationCodeSerializer(data=data)
         code_serializer.is_valid(raise_exception=True)
 
-        data.pop('code')
+        code = RegistrationCode.objects.get(code=data.pop('code'))
+        data['level'] = code.level
+
         return data
